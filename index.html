@@ -1467,14 +1467,93 @@
             <li><a href="#contato">Contato</a></li>
             <li><a href="#sobre">Quem Somos</a></li>
             <li>
-                <div class="nav-lang">
-                    <span class="lang-icon"></span>
-                    <select id="langSelect" onchange="changeLanguage(this.value)">
-                        <option value="pt">PT</option>
-                        <option value="en">EN</option>
-                        <option value="es">ES</option>
-                    </select>
-                </div>
+                <div class="language-dropdown" id="langDropdown">
+    <div class="selected-lang" onclick="toggleDropdown()">
+        <span id="currentFlag">🇧🇷</span> <span id="currentText">PT</span>
+        <span class="arrow">▼</span>
+    </div>
+    <div class="options-list" id="optionsList" style="display: none;">
+        <div class="option-item" onclick="changeLanguage('pt', '🇧🇷', 'PT')">
+            <span>🇧🇷</span> PT
+        </div>
+        <div class="option-item" onclick="changeLanguage('en', '🇺🇸', 'EN')">
+            <span>🇺🇸</span> EN
+        </div>
+        <div class="option-item" onclick="changeLanguage('es', '🇪🇸', 'ES')">
+            <span>🇪🇸</span> ES
+        </div>
+    </div>
+</div>
+
+<script>
+function toggleDropdown() {
+    const list = document.getElementById('optionsList');
+    list.style.display = list.style.display === 'none' ? 'block' : 'none';
+}
+
+function changeLanguage(langCode, flag, text) {
+    // Atualiza o visual do botão selecionado
+    document.getElementById('currentFlag').innerText = flag;
+    document.getElementById('currentText').innerText = text;
+    document.getElementById('optionsList').style.display = 'none';
+    
+    // Chama sua função original de tradução
+    // changeLanguage(langCode); 
+    console.log("Idioma alterado para:", langCode);
+}
+
+// Fecha o menu se clicar fora
+window.onclick = function(event) {
+    if (!event.target.closest('#langDropdown')) {
+        document.getElementById('optionsList').style.display = 'none';
+    }
+}
+</script>
+
+<style>
+.language-dropdown {
+    position: relative;
+    display: inline-block;
+    font-family: sans-serif;
+    font-size: 14px;
+    cursor: pointer;
+    user-select: none;
+}
+.selected-lang {
+    background: #f1f1f1;
+    padding: 8px 12px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+.options-list {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: #fff;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin-top: 4px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    z-index: 99;
+}
+.option-item {
+    padding: 8px 12px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+.option-item:hover {
+    background: #f0f0f0;
+}
+.arrow {
+    font-size: 10px;
+    margin-left: auto;
+}
+</style>>
             </li>
         </ul>
 
@@ -1970,58 +2049,150 @@
 
         fadeElements.forEach(el => observer.observe(el));
 
-        // Language change
+        // Language change (Tradução Completa 100%)
         function changeLanguage(lang) {
             const texts = {
                 pt: {
-                    inicio: 'Início',
-                    musicas: 'Músicas',
-                    contato: 'Contato',
-                    sobre: 'Quem Somos',
-                    ouvir: 'Ouvir Agora',
-                    conheca: 'Conheça o Projeto',
-                    systemOnline: '// Sistema Online',
-                    catalogo: '// Catálogo Sonoro',
-                    plataformas: '// Plataformas',
-                    oucaAgora: 'OUÇA AGORA',
-                    conexao: '// Estabelecer Conexão',
-                    enviar: 'Enviar Mensagem',
-                    statusOnline: 'SYSTEM ONLINE'
+                    navHome: "Início", navMusic: "Músicas", navContact: "Contato", navAbout: "Quem Somos",
+                    heroTag: "Dualidade sônica em sua forma mais absoluta",
+                    btnListen: "Ouvir Agora", btnAbout: "Conheça o Projeto",
+                    aboutLabel: "// Sistema Online", aboutTitle: "QUEM SOMOS", btnEdit: "Editar",
+                    aboutText: "Dualidade sônica em sua forma mais absoluta. <strong>NOCT6</strong> é o arquiteto de frequências projetado para ser a trilha sonora definitiva dos seus 365 dias.<br><br>A visão é o domínio completo sobre ambos os lados da experiência humana e digital. Durante o dia, a entrega é focada em emoção e motivação: harmonias inspiradoras, melodias orgânicas e a energia vital necessária para impulsionar a sua rotina e elevar a sua mente.<br><br>Mas quando a noite cai, o sistema reinicia. O lado humano cessa e a máquina desperta. NOCT6 assume o controle com uma engenharia de som agressiva e implacável, dominando o submundo do <strong>Midtempo Bass, Brazilian Bass e Cinematic Cyberpunk</strong>.<br><br>Criador de narrativas imersivas e do universo \"Machine Dawn\", suas produções noturnas são definidas por Sub-Graves pesados e esmagadores, texturas industriais, sintetizadores sombrios e uma atmosfera de alta voltagem construída para destruir a pista de dança. É a fusão perfeita entre o sentimento orgânico e a precisão fria de um sistema hackeando a rede.<br><br>Escolha o seu momento. Deixe a inspiração guiar o seu dia e deixe o grave tomar o controle da sua noite. <strong>Sistema online...</strong>",
+                    musicLabel: "// Catálogo Sonoro", musicTitle: "MÚSICAS",
+                    streamLabel: "// Plataformas", streamTitle: "OUÇA AGORA",
+                    streamListen: "Ouvir agora →", streamWatch: "Assistir agora →",
+                    contactLabel: "// Estabelecer Conexão", contactTitle: "CONTATO",
+                    contactDesc: "Para bookings, colaborações, remixes ou qualquer outra questão relacionada ao projeto NOCT6, entre em contato através dos canais abaixo. O sistema está sempre online.",
+                    contactLoc: "São Paulo, Brasil",
+                    formName: "Nome", formNamePH: "Seu nome",
+                    formEmail: "Email", formEmailPH: "seu@email.com",
+                    formSub: "Assunto", formSubPH: "Booking / Colaboração / Outro",
+                    formMsg: "Mensagem", formMsgPH: "Descreva sua mensagem...",
+                    btnSend: "Enviar Mensagem",
+                    footerDesc: "Frequency Architect. Dualidade sônica em sua forma mais absoluta. System online...",
+                    footerCopy: "© 2026 NOCT6. All rights reserved. Frequency Architect.",
+                    sysOnline: "SYSTEM ONLINE"
                 },
                 en: {
-                    inicio: 'Home',
-                    musicas: 'Music',
-                    contato: 'Contact',
-                    sobre: 'About Us',
-                    ouvir: 'Listen Now',
-                    conheca: 'About the Project',
-                    systemOnline: '// System Online',
-                    catalogo: '// Sound Catalog',
-                    plataformas: '// Platforms',
-                    oucaAgora: 'LISTEN NOW',
-                    conexao: '// Establish Connection',
-                    enviar: 'Send Message',
-                    statusOnline: 'SYSTEM ONLINE'
+                    navHome: "Home", navMusic: "Music", navContact: "Contact", navAbout: "About Us",
+                    heroTag: "Sonic duality in its most absolute form",
+                    btnListen: "Listen Now", btnAbout: "About the Project",
+                    aboutLabel: "// System Online", aboutTitle: "ABOUT US", btnEdit: "Edit",
+                    aboutText: "Sonic duality in its most absolute form. <strong>NOCT6</strong> is the frequency architect designed to be the ultimate soundtrack for your 365 days.<br><br>The vision is complete dominance over both sides of the human and digital experience. By daylight, the delivery is focused on emotion and motivation: inspiring harmonies, organic melodies, and the vital energy needed to drive your routine and elevate your mind.<br><br>But when night falls, the system reboots. The human side ceases, and the machine awakens. NOCT6 takes control with aggressive and relentless sound engineering, dominating the underworld of <strong>Midtempo Bass, Brazilian Bass, and Cinematic Cyberpunk</strong>.<br><br>Creator of immersive narratives and the \"Machine Dawn\" universe, his nocturnal productions are defined by crushing Heavy Sub-Bass, industrial textures, dark synths, and a high-voltage atmosphere built to destroy the dancefloor. It is the perfect fusion of organic feeling and the cold precision of a system hacking the grid.<br><br>Choose your moment. Let inspiration guide your day, and let the bass take control of your night. <strong>System online...</strong>",
+                    musicLabel: "// Sound Catalog", musicTitle: "MUSIC",
+                    streamLabel: "// Platforms", streamTitle: "LISTEN NOW",
+                    streamListen: "Listen now →", streamWatch: "Watch now →",
+                    contactLabel: "// Establish Connection", contactTitle: "CONTACT",
+                    contactDesc: "For bookings, collaborations, remixes or any other inquiry related to the NOCT6 project, get in touch through the channels below. The system is always online.",
+                    contactLoc: "Sao Paulo, Brazil",
+                    formName: "Name", formNamePH: "Your name",
+                    formEmail: "Email", formEmailPH: "your@email.com",
+                    formSub: "Subject", formSubPH: "Booking / Collaboration / Other",
+                    formMsg: "Message", formMsgPH: "Describe your message...",
+                    btnSend: "Send Message",
+                    footerDesc: "Frequency Architect. Sonic duality in its most absolute form. System online...",
+                    footerCopy: "© 2026 NOCT6. All rights reserved. Frequency Architect.",
+                    sysOnline: "SYSTEM ONLINE"
                 },
                 es: {
-                    inicio: 'Inicio',
-                    musicas: 'Música',
-                    contato: 'Contacto',
-                    sobre: 'Quiénes Somos',
-                    ouvir: 'Escuchar Ahora',
-                    conheca: 'Conoce el Proyecto',
-                    systemOnline: '// Sistema en Línea',
-                    catalogo: '// Catálogo Sonoro',
-                    plataformas: '// Plataformas',
-                    oucaAgora: 'ESCUCHA AHORA',
-                    conexao: '// Establecer Conexión',
-                    enviar: 'Enviar Mensaje',
-                    statusOnline: 'SISTEMA EN LÍNEA'
+                    navHome: "Inicio", navMusic: "Música", navContact: "Contacto", navAbout: "Quiénes Somos",
+                    heroTag: "Dualidad sónica en su forma más absoluta",
+                    btnListen: "Escuchar Ahora", btnAbout: "Conoce el Proyecto",
+                    aboutLabel: "// Sistema en Línea", aboutTitle: "QUIÉNES SOMOS", btnEdit: "Editar",
+                    aboutText: "Dualidad sónica en su forma más absoluta. <strong>NOCT6</strong> es el arquitecto de frecuencias diseñado para ser la banda sonora definitiva de tus 365 días.<br><br>La visión es el dominio completo sobre ambos lados de la experiencia humana y digital. Durante el día, la entrega se centra en la emoción y la motivación: armonías inspiradoras, melodías orgánicas y la energía vital necesaria para impulsar tu rutina y elevar tu mente.<br><br>Pero cuando cae la noche, el sistema se reinicia. El lado humano cesa y la máquina despierta. NOCT6 toma el control con una ingeniería de sonido agresiva e implacable, dominando el inframundo del <strong>Midtempo Bass, Brazilian Bass y Cinematic Cyberpunk</strong>.<br><br>Creador de narrativas inmersivas y del universo \"Machine Dawn\", sus producciones nocturnas se definen por subgraves pesados y aplastantes, texturas industriales, sintetizadores oscuros y una atmósfera de alto voltaje construida para destruir la pista de baile. Es la fusión perfecta entre el sentimiento orgánico y la precisión fría de un sistema hackeando la red.<br><br>Elige tu momento. Deja que la inspiración guíe tu día y deja que el bajo tome el control de tu noche. <strong>Sistema en línea...</strong>",
+                    musicLabel: "// Catálogo Sonoro", musicTitle: "MÚSICA",
+                    streamLabel: "// Plataformas", streamTitle: "ESCUCHA AHORA",
+                    streamListen: "Escuchar ahora →", streamWatch: "Ver ahora →",
+                    contactLabel: "// Establecer Conexión", contactTitle: "CONTACTO",
+                    contactDesc: "Para bookings, colaboraciones, remixes o cualquier otro asunto relacionado con el proyecto NOCT6, ponte en contacto a través de los canales a continuación. El sistema siempre está en línea.",
+                    contactLoc: "São Paulo, Brasil",
+                    formName: "Nombre", formNamePH: "Tu nombre",
+                    formEmail: "Email", formEmailPH: "tu@email.com",
+                    formSub: "Asunto", formSubPH: "Booking / Colaboración / Otro",
+                    formMsg: "Mensaje", formMsgPH: "Describe tu mensaje...",
+                    btnSend: "Enviar Mensaje",
+                    footerDesc: "Frequency Architect. Dualidad sónica en su forma más absoluta. Sistema en línea...",
+                    footerCopy: "© 2026 NOCT6. Todos los derechos reservados. Frequency Architect.",
+                    sysOnline: "SISTEMA EN LÍNEA"
                 }
             };
 
             const t = texts[lang];
-            document.querySelector('.section-label').textContent = t.systemOnline;
+            
+            // Navbar
+            const navLinks = document.querySelectorAll('.nav-links a');
+            navLinks[0].textContent = t.navHome;
+            navLinks[1].textContent = t.navMusic;
+            navLinks[2].textContent = t.navContact;
+            navLinks[3].textContent = t.navAbout;
+
+            // Hero
+            document.querySelector('.hero-tagline').textContent = t.heroTag;
+            document.querySelector('.hero-cta .btn-primary').innerHTML = `<svg class="icon-svg" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg> ${t.btnListen}`;
+            document.querySelector('.hero-cta .btn-outline').textContent = t.btnAbout;
+
+            // Titles & Labels
+            const sectionLabels = document.querySelectorAll('.section-label');
+            const sectionTitles = document.querySelectorAll('.section-title');
+            
+            sectionLabels[0].textContent = t.aboutLabel;
+            sectionTitles[0].textContent = t.aboutTitle;
+            
+            sectionLabels[1].textContent = t.musicLabel;
+            sectionTitles[1].textContent = t.musicTitle;
+            
+            sectionLabels[2].textContent = t.streamLabel;
+            sectionTitles[2].textContent = t.streamTitle;
+            
+            sectionLabels[3].textContent = t.contactLabel;
+            sectionTitles[3].textContent = t.contactTitle;
+
+            // About Section
+            document.querySelector('.about-edit-btn').innerHTML = `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg> ${t.btnEdit}`;
+            document.querySelector('.about-text').innerHTML = t.aboutText;
+
+            // Streaming Actions
+            const streamingActions = document.querySelectorAll('.streaming-action');
+            streamingActions.forEach(action => {
+                if(action.parentElement.classList.contains('streaming-youtube')) {
+                    action.textContent = t.streamWatch;
+                } else {
+                    action.textContent = t.streamListen;
+                }
+            });
+
+            // Contact Section
+            document.querySelector('.contact-info-text').textContent = t.contactDesc;
+            const contactValues = document.querySelectorAll('.contact-item-value');
+            contactValues[3].textContent = t.contactLoc; // Altera apenas o local
+
+            // Form
+            const formLabels = document.querySelectorAll('.form-label');
+            formLabels[0].textContent = t.formName;
+            formLabels[1].textContent = t.formEmail;
+            formLabels[2].textContent = t.formSub;
+            formLabels[3].textContent = t.formMsg;
+
+            document.querySelector('input[name="Nome"]').placeholder = t.formNamePH;
+            document.querySelector('input[name="Email"]').placeholder = t.formEmailPH;
+            document.querySelector('input[name="Assunto"]').placeholder = t.formSubPH;
+            document.querySelector('textarea[name="Mensagem"]').placeholder = t.formMsgPH;
+
+            document.querySelector('.contact-form .btn-primary').innerHTML = `<svg class="icon-svg" viewBox="0 0 24 24"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg> ${t.btnSend}`;
+
+            // Footer
+            document.querySelector('.footer-desc').textContent = t.footerDesc;
+            const footerLinks = document.querySelectorAll('.footer-links a');
+            footerLinks[0].textContent = t.navHome;
+            footerLinks[1].textContent = t.navMusic;
+            footerLinks[2].textContent = t.navAbout;
+            footerLinks[3].textContent = t.navContact;
+            
+            document.querySelector('.footer-copy').textContent = t.footerCopy;
+            document.querySelector('.footer-status').innerHTML = `<div class="status-dot"></div> ${t.sysOnline}`;
+            
+            // Atualiza a tag HTML principal para acessibilidade
+            document.documentElement.lang = lang;
         }
 
        // Form submit usando Formspree via AJAX
