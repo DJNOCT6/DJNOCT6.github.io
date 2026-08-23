@@ -1,0 +1,1907 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NOCT6 | Frequency Architect</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Rajdhani:wght@300;400;500;600;700&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+    <style>
+        /* ===== RESET & BASE ===== */
+        *, *::before, *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --neon-purple: #b829dd;
+            --neon-pink: #e91e8c;
+            --neon-blue: #00d4ff;
+            --neon-green: #39ff14;
+            --dark-bg: #0a0a0f;
+            --dark-card: #12121a;
+            --dark-card-hover: #1a1a2e;
+            --dark-border: #1e1e30;
+            --text-primary: #f0f0f5;
+            --text-secondary: #8888a0;
+            --text-muted: #55556a;
+            --gradient-neon: linear-gradient(135deg, #b829dd, #e91e8c, #00d4ff);
+            --gradient-dark: linear-gradient(180deg, #0a0a0f 0%, #12121a 100%);
+            --glow-purple: 0 0 20px rgba(184, 41, 221, 0.5), 0 0 40px rgba(184, 41, 221, 0.2);
+            --glow-pink: 0 0 20px rgba(233, 30, 140, 0.5), 0 0 40px rgba(233, 30, 140, 0.2);
+        }
+
+        html {
+            scroll-behavior: smooth;
+            scrollbar-width: thin;
+            scrollbar-color: var(--neon-purple) var(--dark-bg);
+        }
+
+        html::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        html::-webkit-scrollbar-track {
+            background: var(--dark-bg);
+        }
+
+        html::-webkit-scrollbar-thumb {
+            background: var(--neon-purple);
+            border-radius: 4px;
+        }
+
+        body {
+            font-family: 'Rajdhani', sans-serif;
+            background-color: var(--dark-bg);
+            color: var(--text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* ===== ANIMATED BACKGROUND ===== */
+        .bg-grid {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -2;
+            background-image:
+                linear-gradient(rgba(184, 41, 221, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(184, 41, 221, 0.03) 1px, transparent 1px);
+            background-size: 60px 60px;
+        }
+
+        .bg-glow {
+            position: fixed;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            z-index: -1;
+            background: radial-gradient(ellipse at 30% 20%, rgba(184, 41, 221, 0.08) 0%, transparent 50%),
+                        radial-gradient(ellipse at 70% 80%, rgba(233, 30, 140, 0.05) 0%, transparent 50%);
+            animation: glowPulse 8s ease-in-out infinite alternate;
+        }
+
+        @keyframes glowPulse {
+            0% { opacity: 0.5; transform: scale(1); }
+            100% { opacity: 1; transform: scale(1.1); }
+        }
+
+        /* ===== NAVIGATION ===== */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            padding: 0 40px;
+            height: 70px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: rgba(10, 10, 15, 0.85);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(184, 41, 221, 0.15);
+            transition: all 0.3s ease;
+        }
+
+        .navbar.scrolled {
+            background: rgba(10, 10, 15, 0.95);
+            box-shadow: 0 4px 30px rgba(184, 41, 221, 0.1);
+        }
+
+        .nav-logo {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.6rem;
+            font-weight: 900;
+            background: var(--gradient-neon);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-decoration: none;
+            letter-spacing: 3px;
+            position: relative;
+        }
+
+        .nav-logo::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: var(--gradient-neon);
+            box-shadow: var(--glow-purple);
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 0.7rem;
+            font-weight: 600;
+            color: var(--text-secondary);
+            text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            padding: 8px 18px;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: var(--text-primary);
+            background: rgba(184, 41, 221, 0.1);
+        }
+
+        .nav-links a.active::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60%;
+            height: 2px;
+            background: var(--neon-purple);
+            box-shadow: var(--glow-purple);
+        }
+
+        .nav-lang {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            margin-left: 16px;
+            padding: 6px 14px;
+            border: 1px solid var(--dark-border);
+            border-radius: 6px;
+            background: rgba(18, 18, 26, 0.8);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .nav-lang:hover {
+            border-color: var(--neon-purple);
+        }
+
+        .nav-lang select {
+            background: transparent;
+            border: none;
+            color: var(--text-secondary);
+            font-family: 'Share Tech Mono', monospace;
+            font-size: 0.75rem;
+            cursor: pointer;
+            outline: none;
+            appearance: none;
+            -webkit-appearance: none;
+        }
+
+        .nav-lang select option {
+            background: var(--dark-card);
+            color: var(--text-primary);
+        }
+
+        .lang-icon {
+            font-size: 0.9rem;
+        }
+
+        /* Hamburger */
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+            padding: 5px;
+            z-index: 1001;
+        }
+
+        .hamburger span {
+            width: 28px;
+            height: 2px;
+            background: var(--text-primary);
+            transition: all 0.3s ease;
+            border-radius: 2px;
+        }
+
+        .hamburger.active span:nth-child(1) {
+            transform: rotate(45deg) translate(5px, 5px);
+        }
+
+        .hamburger.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .hamburger.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(5px, -5px);
+        }
+
+        /* ===== HERO SECTION ===== */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 120px 40px 80px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(184, 41, 221, 0.15) 0%, transparent 70%);
+            border-radius: 50%;
+            animation: heroGlow 6s ease-in-out infinite alternate;
+        }
+
+        @keyframes heroGlow {
+            0% { transform: translate(-50%, -50%) scale(1); opacity: 0.5; }
+            100% { transform: translate(-50%, -50%) scale(1.3); opacity: 1; }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-avatar {
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            margin: 0 auto 40px;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .hero-avatar::before {
+            content: '';
+            position: absolute;
+            inset: -4px;
+            border-radius: 50%;
+            background: var(--gradient-neon);
+            animation: rotateBorder 4s linear infinite;
+            z-index: -1;
+        }
+
+        .hero-avatar::after {
+            content: '';
+            position: absolute;
+            inset: -4px;
+            border-radius: 50%;
+            background: var(--gradient-neon);
+            filter: blur(20px);
+            opacity: 0.5;
+            animation: rotateBorder 4s linear infinite;
+            z-index: -2;
+        }
+
+        @keyframes rotateBorder {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .hero-avatar img {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid var(--dark-bg);
+        }
+
+        .hero-avatar-placeholder {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            background: radial-gradient(circle at 30% 30%, #2a1040, #0a0a0f);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 3px solid var(--dark-bg);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-avatar-placeholder::before {
+            content: 'N6';
+            font-family: 'Orbitron', sans-serif;
+            font-size: 3rem;
+            font-weight: 900;
+            background: var(--gradient-neon);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-avatar-placeholder::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: conic-gradient(from 0deg, transparent, rgba(184, 41, 221, 0.3), transparent, rgba(233, 30, 140, 0.3), transparent);
+            animation: rotateBorder 6s linear infinite;
+        }
+
+        .hero-title {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 5rem;
+            font-weight: 900;
+            letter-spacing: 12px;
+            margin-bottom: 16px;
+            background: var(--gradient-neon);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-shadow: none;
+            position: relative;
+        }
+
+        .hero-title::after {
+            content: 'NOCT6';
+            position: absolute;
+            top: 0;
+            left: 0;
+            background: var(--gradient-neon);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            filter: blur(30px);
+            opacity: 0.5;
+            z-index: -1;
+        }
+
+        .hero-subtitle {
+            font-family: 'Share Tech Mono', monospace;
+            font-size: 1rem;
+            color: var(--text-secondary);
+            letter-spacing: 6px;
+            text-transform: uppercase;
+            margin-bottom: 12px;
+        }
+
+        .hero-tagline {
+            font-family: 'Rajdhani', sans-serif;
+            font-size: 1.3rem;
+            color: var(--text-muted);
+            font-weight: 300;
+            margin-bottom: 40px;
+            letter-spacing: 2px;
+        }
+
+        .hero-cta {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 0.75rem;
+            font-weight: 700;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            padding: 14px 36px;
+            border-radius: 6px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .btn-primary {
+            background: var(--gradient-neon);
+            color: #fff;
+            box-shadow: 0 4px 25px rgba(184, 41, 221, 0.4);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 35px rgba(184, 41, 221, 0.6);
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: var(--text-primary);
+            border: 1px solid var(--dark-border);
+        }
+
+        .btn-outline:hover {
+            border-color: var(--neon-purple);
+            background: rgba(184, 41, 221, 0.08);
+            transform: translateY(-2px);
+        }
+
+        .hero-scroll {
+            position: absolute;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+            color: var(--text-muted);
+            font-family: 'Share Tech Mono', monospace;
+            font-size: 0.7rem;
+            letter-spacing: 3px;
+            animation: scrollBounce 2s ease-in-out infinite;
+        }
+
+        .hero-scroll .scroll-line {
+            width: 1px;
+            height: 40px;
+            background: linear-gradient(to bottom, var(--neon-purple), transparent);
+        }
+
+        @keyframes scrollBounce {
+            0%, 100% { transform: translateX(-50%) translateY(0); }
+            50% { transform: translateX(-50%) translateY(10px); }
+        }
+
+        /* ===== SECTION STYLES ===== */
+        .section {
+            padding: 100px 40px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-label {
+            font-family: 'Share Tech Mono', monospace;
+            font-size: 0.75rem;
+            color: var(--neon-purple);
+            letter-spacing: 6px;
+            text-transform: uppercase;
+            margin-bottom: 12px;
+        }
+
+        .section-title {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 2.5rem;
+            font-weight: 800;
+            letter-spacing: 4px;
+            margin-bottom: 16px;
+        }
+
+        .section-divider {
+            width: 80px;
+            height: 3px;
+            background: var(--gradient-neon);
+            margin: 0 auto;
+            border-radius: 2px;
+            box-shadow: var(--glow-purple);
+        }
+
+        /* ===== ABOUT SECTION ===== */
+        .about-card {
+            background: var(--dark-card);
+            border: 1px solid var(--dark-border);
+            border-radius: 16px;
+            padding: 50px;
+            display: grid;
+            grid-template-columns: 300px 1fr;
+            gap: 50px;
+            align-items: start;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .about-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: var(--gradient-neon);
+        }
+
+        .about-left {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 24px;
+        }
+
+        .about-avatar {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .about-avatar::before {
+            content: '';
+            position: absolute;
+            inset: -3px;
+            border-radius: 50%;
+            background: var(--gradient-neon);
+            z-index: -1;
+        }
+
+        .about-avatar-inner {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            background: radial-gradient(circle at 30% 30%, #2a1040, #0a0a0f);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 3px solid var(--dark-card);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .about-avatar-inner::before {
+            content: 'NOCT6';
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.2rem;
+            font-weight: 900;
+            background: var(--gradient-neon);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            z-index: 1;
+        }
+
+        .about-avatar-inner::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: conic-gradient(from 0deg, transparent, rgba(184, 41, 221, 0.2), transparent, rgba(233, 30, 140, 0.2), transparent);
+            animation: rotateBorder 8s linear infinite;
+        }
+
+        .about-name {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.8rem;
+            font-weight: 800;
+            letter-spacing: 4px;
+        }
+
+        .about-edit-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 20px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--dark-border);
+            border-radius: 20px;
+            color: var(--text-secondary);
+            font-family: 'Rajdhani', sans-serif;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .about-edit-btn:hover {
+            border-color: var(--neon-purple);
+            color: var(--text-primary);
+        }
+
+        .about-right {
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+        }
+
+        .about-text {
+            font-size: 1.05rem;
+            line-height: 1.8;
+            color: var(--text-secondary);
+            font-weight: 400;
+        }
+
+        .about-text strong {
+            color: var(--text-primary);
+            font-weight: 600;
+        }
+
+        .about-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 8px;
+        }
+
+        .tag {
+            font-family: 'Share Tech Mono', monospace;
+            font-size: 0.75rem;
+            padding: 6px 16px;
+            border: 1px solid var(--dark-border);
+            border-radius: 20px;
+            color: var(--text-secondary);
+            background: rgba(184, 41, 221, 0.05);
+            transition: all 0.3s ease;
+            letter-spacing: 1px;
+        }
+
+        .tag:hover {
+            border-color: var(--neon-purple);
+            color: var(--neon-purple);
+            background: rgba(184, 41, 221, 0.1);
+        }
+
+        .about-social {
+            display: flex;
+            gap: 16px;
+            margin-top: 8px;
+        }
+
+        .social-icon {
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            border: 1px solid var(--dark-border);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            font-size: 1.1rem;
+        }
+
+        .social-icon:hover {
+            border-color: var(--neon-purple);
+            color: var(--neon-purple);
+            background: rgba(184, 41, 221, 0.1);
+            transform: translateY(-3px);
+            box-shadow: var(--glow-purple);
+        }
+
+        /* ===== MUSIC SECTION ===== */
+        .music-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 24px;
+        }
+
+        .music-card {
+            background: var(--dark-card);
+            border: 1px solid var(--dark-border);
+            border-radius: 12px;
+            overflow: hidden;
+            transition: all 0.4s ease;
+            position: relative;
+            group: true;
+        }
+
+        .music-card:hover {
+            transform: translateY(-6px);
+            border-color: rgba(184, 41, 221, 0.3);
+            box-shadow: 0 12px 40px rgba(184, 41, 221, 0.15);
+        }
+
+        .music-card-cover {
+            width: 100%;
+            aspect-ratio: 1;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .music-card-cover-bg {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 2rem;
+            font-weight: 900;
+            color: rgba(255, 255, 255, 0.1);
+        }
+
+        .cover-1 { background: linear-gradient(135deg, #1a0a2e, #2d1b4e, #0a0a1a); }
+        .cover-2 { background: linear-gradient(135deg, #0a1a2e, #1b2d4e, #0a0a1a); }
+        .cover-3 { background: linear-gradient(135deg, #2e0a1a, #4e1b2d, #0a0a1a); }
+        .cover-4 { background: linear-gradient(135deg, #0a2e1a, #1b4e2d, #0a0a1a); }
+        .cover-5 { background: linear-gradient(135deg, #2e1a0a, #4e2d1b, #0a0a1a); }
+        .cover-6 { background: linear-gradient(135deg, #1a0a2e, #0a2e2e, #0a0a1a); }
+
+        .music-card-cover-bg::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: conic-gradient(from 0deg, transparent, rgba(184, 41, 221, 0.1), transparent);
+            animation: rotateBorder 10s linear infinite;
+        }
+
+        .music-play-overlay {
+            position: absolute;
+            inset: 0;
+            background: rgba(10, 10, 15, 0.7);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: all 0.3s ease;
+        }
+
+        .music-card:hover .music-play-overlay {
+            opacity: 1;
+        }
+
+        .play-btn {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: var(--gradient-neon);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            font-size: 1.5rem;
+            box-shadow: var(--glow-purple);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: none;
+        }
+
+        .play-btn:hover {
+            transform: scale(1.1);
+        }
+
+        .music-card-info {
+            padding: 20px;
+        }
+
+        .music-card-title {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 0.9rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+            margin-bottom: 6px;
+        }
+
+        .music-card-meta {
+            font-family: 'Share Tech Mono', monospace;
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            letter-spacing: 1px;
+        }
+
+        .music-card-genre {
+            display: inline-block;
+            margin-top: 10px;
+            font-family: 'Share Tech Mono', monospace;
+            font-size: 0.65rem;
+            padding: 3px 10px;
+            border: 1px solid rgba(184, 41, 221, 0.3);
+            border-radius: 12px;
+            color: var(--neon-purple);
+            letter-spacing: 1px;
+        }
+
+        /* ===== STREAMING SECTION ===== */
+        .streaming-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            gap: 20px;
+        }
+
+        .streaming-card {
+            background: var(--dark-card);
+            border: 1px solid var(--dark-border);
+            border-radius: 12px;
+            padding: 30px 24px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 16px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+
+        .streaming-card:hover {
+            transform: translateY(-4px);
+            border-color: rgba(184, 41, 221, 0.3);
+            box-shadow: 0 8px 30px rgba(184, 41, 221, 0.1);
+        }
+
+        .streaming-icon {
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .streaming-card:hover .streaming-icon {
+            transform: scale(1.1);
+        }
+
+        .streaming-spotify .streaming-icon { background: rgba(30, 215, 96, 0.15); color: #1ed760; }
+        .streaming-spotify:hover { border-color: rgba(30, 215, 96, 0.3); }
+
+        .streaming-apple .streaming-icon { background: rgba(252, 60, 68, 0.15); color: #fc3c44; }
+        .streaming-apple:hover { border-color: rgba(252, 60, 68, 0.3); }
+
+        .streaming-soundcloud .streaming-icon { background: rgba(255, 136, 0, 0.15); color: #ff8800; }
+        .streaming-soundcloud:hover { border-color: rgba(255, 136, 0, 0.3); }
+
+        .streaming-youtube .streaming-icon { background: rgba(255, 0, 0, 0.15); color: #ff0000; }
+        .streaming-youtube:hover { border-color: rgba(255, 0, 0, 0.3); }
+
+        .streaming-deezer .streaming-icon { background: rgba(160, 56, 255, 0.15); color: #a038ff; }
+        .streaming-deezer:hover { border-color: rgba(160, 56, 255, 0.3); }
+
+        .streaming-tidal .streaming-icon { background: rgba(255, 255, 255, 0.1); color: #fff; }
+        .streaming-tidal:hover { border-color: rgba(255, 255, 255, 0.3); }
+
+        .streaming-name {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 0.8rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            color: var(--text-primary);
+        }
+
+        .streaming-action {
+            font-family: 'Share Tech Mono', monospace;
+            font-size: 0.7rem;
+            color: var(--text-muted);
+            letter-spacing: 1px;
+        }
+
+        /* ===== CONTACT SECTION ===== */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+        }
+
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+
+        .contact-info-text {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            line-height: 1.8;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .contact-item-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 12px;
+            background: rgba(184, 41, 221, 0.1);
+            border: 1px solid rgba(184, 41, 221, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--neon-purple);
+            font-size: 1.2rem;
+            flex-shrink: 0;
+        }
+
+        .contact-item-label {
+            font-family: 'Share Tech Mono', monospace;
+            font-size: 0.7rem;
+            color: var(--text-muted);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .contact-item-value {
+            font-size: 1rem;
+            color: var(--text-primary);
+            font-weight: 500;
+        }
+
+        .contact-item-value a {
+            color: var(--text-primary);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .contact-item-value a:hover {
+            color: var(--neon-purple);
+        }
+
+        .contact-form {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .form-label {
+            font-family: 'Share Tech Mono', monospace;
+            font-size: 0.7rem;
+            color: var(--text-muted);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .form-input,
+        .form-textarea {
+            background: var(--dark-card);
+            border: 1px solid var(--dark-border);
+            border-radius: 8px;
+            padding: 14px 18px;
+            color: var(--text-primary);
+            font-family: 'Rajdhani', sans-serif;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            outline: none;
+        }
+
+        .form-input:focus,
+        .form-textarea:focus {
+            border-color: var(--neon-purple);
+            box-shadow: 0 0 0 3px rgba(184, 41, 221, 0.1);
+        }
+
+        .form-input::placeholder,
+        .form-textarea::placeholder {
+            color: var(--text-muted);
+        }
+
+        .form-textarea {
+            min-height: 140px;
+            resize: vertical;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        /* ===== FOOTER ===== */
+        .footer {
+            border-top: 1px solid var(--dark-border);
+            padding: 60px 40px 30px;
+            background: rgba(10, 10, 15, 0.5);
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr auto 1fr;
+            gap: 40px;
+            align-items: start;
+        }
+
+        .footer-brand {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .footer-logo {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.4rem;
+            font-weight: 900;
+            background: var(--gradient-neon);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            letter-spacing: 4px;
+        }
+
+        .footer-desc {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            max-width: 300px;
+            line-height: 1.6;
+        }
+
+        .footer-social {
+            display: flex;
+            gap: 12px;
+        }
+
+        .footer-social a {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            border: 1px solid var(--dark-border);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            font-size: 1rem;
+        }
+
+        .footer-social a:hover {
+            border-color: var(--neon-purple);
+            color: var(--neon-purple);
+            background: rgba(184, 41, 221, 0.1);
+            transform: translateY(-2px);
+        }
+
+        .footer-center {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .footer-streaming {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .footer-streaming a {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            border: 1px solid var(--dark-border);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+        }
+
+        .footer-streaming a:hover {
+            border-color: var(--neon-purple);
+            color: var(--neon-purple);
+            transform: translateY(-2px);
+        }
+
+        .footer-links {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            gap: 12px;
+        }
+
+        .footer-links a {
+            font-family: 'Share Tech Mono', monospace;
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            text-decoration: none;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--neon-purple);
+        }
+
+        .footer-bottom {
+            max-width: 1200px;
+            margin: 40px auto 0;
+            padding-top: 24px;
+            border-top: 1px solid var(--dark-border);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 16px;
+        }
+
+        .footer-copy {
+            font-family: 'Share Tech Mono', monospace;
+            font-size: 0.7rem;
+            color: var(--text-muted);
+            letter-spacing: 1px;
+        }
+
+        .footer-status {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-family: 'Share Tech Mono', monospace;
+            font-size: 0.7rem;
+            color: var(--neon-green);
+            letter-spacing: 1px;
+        }
+
+        .status-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--neon-green);
+            box-shadow: 0 0 10px rgba(57, 255, 20, 0.5);
+            animation: statusPulse 2s ease-in-out infinite;
+        }
+
+        @keyframes statusPulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.4; }
+        }
+
+        /* ===== SVG ICONS ===== */
+        .icon-svg {
+            width: 20px;
+            height: 20px;
+            fill: currentColor;
+        }
+
+        .icon-svg-lg {
+            width: 24px;
+            height: 24px;
+            fill: currentColor;
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 1024px) {
+            .about-card {
+                grid-template-columns: 1fr;
+                padding: 36px;
+            }
+
+            .about-left {
+                flex-direction: row;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .footer-links {
+                align-items: center;
+            }
+
+            .footer-desc {
+                max-width: 100%;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .navbar {
+                padding: 0 20px;
+            }
+
+            .nav-links {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 280px;
+                height: 100vh;
+                background: rgba(10, 10, 15, 0.98);
+                backdrop-filter: blur(20px);
+                flex-direction: column;
+                justify-content: center;
+                padding: 40px;
+                border-left: 1px solid var(--dark-border);
+                transition: right 0.4s ease;
+                gap: 4px;
+            }
+
+            .nav-links.open {
+                right: 0;
+            }
+
+            .nav-links a {
+                font-size: 0.8rem;
+                padding: 12px 20px;
+                width: 100%;
+                text-align: center;
+            }
+
+            .nav-lang {
+                margin-left: 0;
+                margin-top: 16px;
+            }
+
+            .hamburger {
+                display: flex;
+            }
+
+            .hero {
+                padding: 100px 20px 60px;
+            }
+
+            .hero-title {
+                font-size: 2.8rem;
+                letter-spacing: 6px;
+            }
+
+            .hero-subtitle {
+                font-size: 0.8rem;
+                letter-spacing: 4px;
+            }
+
+            .hero-tagline {
+                font-size: 1rem;
+            }
+
+            .hero-avatar {
+                width: 140px;
+                height: 140px;
+            }
+
+            .section {
+                padding: 60px 20px;
+            }
+
+            .section-title {
+                font-size: 1.8rem;
+            }
+
+            .about-card {
+                padding: 24px;
+            }
+
+            .about-avatar {
+                width: 150px;
+                height: 150px;
+            }
+
+            .music-grid {
+                grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+            }
+
+            .streaming-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+
+            .footer {
+                padding: 40px 20px 20px;
+            }
+
+            .footer-bottom {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-title {
+                font-size: 2rem;
+                letter-spacing: 4px;
+            }
+
+            .hero-cta {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .btn {
+                width: 100%;
+                max-width: 280px;
+                justify-content: center;
+            }
+
+            .streaming-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 12px;
+            }
+
+            .streaming-card {
+                padding: 20px 16px;
+            }
+        }
+
+        /* ===== ANIMATIONS ===== */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .fade-in-delay-1 { transition-delay: 0.1s; }
+        .fade-in-delay-2 { transition-delay: 0.2s; }
+        .fade-in-delay-3 { transition-delay: 0.3s; }
+        .fade-in-delay-4 { transition-delay: 0.4s; }
+    </style>
+</head>
+<body>
+
+    <!-- Background Effects -->
+    <div class="bg-grid"></div>
+    <div class="bg-glow"></div>
+
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <a href="#inicio" class="nav-logo">NOCT6</a>
+
+        <ul class="nav-links" id="navLinks">
+            <li><a href="#inicio" class="active">Início</a></li>
+            <li><a href="#musicas">Músicas</a></li>
+            <li><a href="#contato">Contato</a></li>
+            <li><a href="#sobre">Quem Somos</a></li>
+            <li>
+                <div class="nav-lang">
+                    <span class="lang-icon"></span>
+                    <select id="langSelect" onchange="changeLanguage(this.value)">
+                        <option value="pt">PT</option>
+                        <option value="en">EN</option>
+                        <option value="es">ES</option>
+                    </select>
+                </div>
+            </li>
+        </ul>
+
+        <div class="hamburger" id="hamburger" onclick="toggleMenu()">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="inicio">
+        <div class="hero-content">
+            <div class="hero-avatar">
+                <div class="hero-avatar-placeholder"></div>
+            </div>
+            <h1 class="hero-title">NOCT6</h1>
+            <p class="hero-subtitle">Frequency Architect</p>
+            <p class="hero-tagline">Sonic duality in its most absolute form</p>
+            <div class="hero-cta">
+                <a href="#musicas" class="btn btn-primary">
+                    <svg class="icon-svg" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                    Ouvir Agora
+                </a>
+                <a href="#sobre" class="btn btn-outline">
+                    Conheça o Projeto
+                </a>
+            </div>
+        </div>
+        <div class="hero-scroll">
+            <span>SCROLL</span>
+            <div class="scroll-line"></div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="section" id="sobre">
+        <div class="section-header fade-in">
+            <p class="section-label">// Sistema Online</p>
+            <h2 class="section-title">QUEM SOMOS</h2>
+            <div class="section-divider"></div>
+        </div>
+
+        <div class="about-card fade-in">
+            <div class="about-left">
+                <div class="about-avatar">
+                    <div class="about-avatar-inner"></div>
+                </div>
+                <h3 class="about-name">NOCT6</h3>
+                <button class="about-edit-btn">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+                    Editar
+                </button>
+            </div>
+            <div class="about-right">
+                <p class="about-text">
+                    Sonic duality in its most absolute form. <strong>NOCT6</strong> is the frequency architect designed to be the ultimate soundtrack for your 365 days. The vision is complete dominance over both sides of the human and digital experience. By daylight, the delivery is focused on emotion and motivation: inspiring harmonies, organic melodies, and the vital energy needed to drive your routine and elevate your mind. But when night falls, the system reboots. The human side ceases, and the machine awakens. NOCT6 takes control with aggressive and relentless sound engineering, dominating the underworld of <strong>Midtempo Bass, Brazilian Bass, and Cinematic Cyberpunk</strong>. Creator of immersive narratives and the "Machine Dawn" universe, his nocturnal productions are defined by crushing Heavy Sub-Bass, industrial textures, dark synths, and a high-voltage atmosphere built to destroy the dancefloor. It is the perfect fusion of organic feeling and the cold precision of a system hacking the grid. Choose your moment. Let inspiration guide your day, and let the bass take control of your night. <strong>System online...</strong>
+                </p>
+                <div class="about-tags">
+                    <span class="tag">cyberpunk</span>
+                    <span class="tag">electronic</span>
+                    <span class="tag">bass music</span>
+                    <span class="tag">cyberpunk bass</span>
+                    <span class="tag">industrial dance</span>
+                    <span class="tag">midtempo</span>
+                    <span class="tag">brazilian bass</span>
+                </div>
+                <div class="about-social">
+                    <a href="#" class="social-icon" title="Spotify">
+                        <svg class="icon-svg" viewBox="0 0 24 24"><path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z"/></svg>
+                    </a>
+                    <a href="#" class="social-icon" title="Instagram">
+                        <svg class="icon-svg" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+                    </a>
+                    <a href="#" class="social-icon" title="TikTok">
+                        <svg class="icon-svg" viewBox="0 0 24 24"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1v-3.5a6.37 6.37 0 00-.79-.05A6.34 6.34 0 003.15 15.2a6.34 6.34 0 0010.86 4.46V13a8.28 8.28 0 005.58 2.17V11.7a4.83 4.83 0 01-3.77-1.24V6.69h3.77z"/></svg>
+                    </a>
+                    <a href="#" class="social-icon" title="YouTube">
+                        <svg class="icon-svg" viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Music Section -->
+    <section class="section" id="musicas">
+        <div class="section-header fade-in">
+            <p class="section-label">// Catálogo Sonoro</p>
+            <h2 class="section-title">MÚSICAS</h2>
+            <div class="section-divider"></div>
+        </div>
+
+        <div class="music-grid">
+            <div class="music-card fade-in fade-in-delay-1">
+                <div class="music-card-cover">
+                    <div class="music-card-cover-bg cover-1">N6</div>
+                    <div class="music-play-overlay">
+                        <button class="play-btn">▶</button>
+                    </div>
+                </div>
+                <div class="music-card-info">
+                    <h3 class="music-card-title">MACHINE DAWN</h3>
+                    <p class="music-card-meta">NOCT6 • 2024</p>
+                    <span class="music-card-genre">Cyberpunk Bass</span>
+                </div>
+            </div>
+
+            <div class="music-card fade-in fade-in-delay-2">
+                <div class="music-card-cover">
+                    <div class="music-card-cover-bg cover-2">N6</div>
+                    <div class="music-play-overlay">
+                        <button class="play-btn">▶</button>
+                    </div>
+                </div>
+                <div class="music-card-info">
+                    <h3 class="music-card-title">GRID PROTOCOL</h3>
+                    <p class="music-card-meta">NOCT6 • 2024</p>
+                    <span class="music-card-genre">Midtempo Bass</span>
+                </div>
+            </div>
+
+            <div class="music-card fade-in fade-in-delay-3">
+                <div class="music-card-cover">
+                    <div class="music-card-cover-bg cover-3">N6</div>
+                    <div class="music-play-overlay">
+                        <button class="play-btn">▶</button>
+                    </div>
+                </div>
+                <div class="music-card-info">
+                    <h3 class="music-card-title">NEURAL OVERRIDE</h3>
+                    <p class="music-card-meta">NOCT6 • 2024</p>
+                    <span class="music-card-genre">Industrial Dance</span>
+                </div>
+            </div>
+
+            <div class="music-card fade-in fade-in-delay-1">
+                <div class="music-card-cover">
+                    <div class="music-card-cover-bg cover-4">N6</div>
+                    <div class="music-play-overlay">
+                        <button class="play-btn">▶</button>
+                    </div>
+                </div>
+                <div class="music-card-info">
+                    <h3 class="music-card-title">SUB BASS REBELLION</h3>
+                    <p class="music-card-meta">NOCT6 • 2023</p>
+                    <span class="music-card-genre">Brazilian Bass</span>
+                </div>
+            </div>
+
+            <div class="music-card fade-in fade-in-delay-2">
+                <div class="music-card-cover">
+                    <div class="music-card-cover-bg cover-5">N6</div>
+                    <div class="music-play-overlay">
+                        <button class="play-btn">▶</button>
+                    </div>
+                </div>
+                <div class="music-card-info">
+                    <h3 class="music-card-title">DARK SYNTHESIS</h3>
+                    <p class="music-card-meta">NOCT6 • 2023</p>
+                    <span class="music-card-genre">Electronic</span>
+                </div>
+            </div>
+
+            <div class="music-card fade-in fade-in-delay-3">
+                <div class="music-card-cover">
+                    <div class="music-card-cover-bg cover-6">N6</div>
+                    <div class="music-play-overlay">
+                        <button class="play-btn">▶</button>
+                    </div>
+                </div>
+                <div class="music-card-info">
+                    <h3 class="music-card-title">SYSTEM REBOOT</h3>
+                    <p class="music-card-meta">NOCT6 • 2023</p>
+                    <span class="music-card-genre">Cyberpunk</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Streaming Section -->
+    <section class="section" id="streaming">
+        <div class="section-header fade-in">
+            <p class="section-label">// Plataformas</p>
+            <h2 class="section-title">OUÇA AGORA</h2>
+            <div class="section-divider"></div>
+        </div>
+
+        <div class="streaming-grid">
+            <a href="#" class="streaming-card streaming-spotify fade-in fade-in-delay-1">
+                <div class="streaming-icon">
+                    <svg class="icon-svg-lg" viewBox="0 0 24 24"><path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z"/></svg>
+                </div>
+                <span class="streaming-name">Spotify</span>
+                <span class="streaming-action">Ouvir agora →</span>
+            </a>
+
+            <a href="#" class="streaming-card streaming-apple fade-in fade-in-delay-2">
+                <div class="streaming-icon">
+                    <svg class="icon-svg-lg" viewBox="0 0 24 24"><path d="M23.994 6.124a9.23 9.23 0 00-.24-2.19c-.317-1.31-1.062-2.31-2.18-3.043a5.022 5.022 0 00-1.877-.726 10.496 10.496 0 00-1.564-.15c-.04-.003-.083-.01-.124-.013H5.986c-.152.01-.303.017-.455.026-.747.043-1.49.123-2.193.4-1.336.53-2.3 1.452-2.865 2.78-.192.448-.292.925-.363 1.408-.056.392-.088.785-.1 1.18 0 .032-.007.062-.01.093v12.223c.01.14.017.283.027.424.05.815.154 1.624.497 2.373.65 1.42 1.738 2.353 3.234 2.802.42.127.856.187 1.293.228.555.053 1.11.06 1.667.06h11.03c.525 0 1.048-.034 1.57-.1.823-.106 1.597-.35 2.288-.82a4.75 4.75 0 001.88-2.207c.186-.45.293-.927.363-1.41.087-.593.1-1.19.097-1.788-.003-3.917-.003-7.834-.003-11.752zm-7.39 11.033c-.01.06-.017.12-.03.18a1.77 1.77 0 01-1.69 1.37c-.27.007-.54-.03-.81-.06a2.77 2.77 0 01-1.28-.46 2.83 2.83 0 01-1.09-1.21c-.16-.34-.24-.7-.27-1.07-.04-.47.01-.94.12-1.4.19-.79.57-1.47 1.17-2.02.46-.42 1-.72 1.61-.88.34-.09.69-.13 1.04-.14.57-.01 1.12.09 1.64.32.72.31 1.28.8 1.67 1.49.26.46.4.96.44 1.49.02.28.01.56-.02.84-.02.18-.04.36-.07.54l-.01.01zm.27-6.79c-.04.33-.15.64-.33.92-.36.56-.87.94-1.5 1.14-.36.12-.73.17-1.11.18-.57.01-1.12-.09-1.64-.31-.73-.32-1.29-.82-1.68-1.52-.25-.45-.39-.94-.43-1.46-.02-.29-.01-.58.02-.87.04-.35.16-.68.35-.98.37-.58.89-.97 1.54-1.17.35-.11.71-.16 1.08-.17.58 0 1.14.1 1.67.33.71.31 1.26.79 1.64 1.47.26.46.4.96.44 1.49.02.29.01.58-.02.87l-.03.08z"/></svg>
+                </div>
+                <span class="streaming-name">Apple Music</span>
+                <span class="streaming-action">Ouvir agora →</span>
+            </a>
+
+            <a href="#" class="streaming-card streaming-soundcloud fade-in fade-in-delay-3">
+                <div class="streaming-icon">
+                    <svg class="icon-svg-lg" viewBox="0 0 24 24"><path d="M1.175 12.225c-.051 0-.094.046-.101.1l-.233 2.154.233 2.105c.007.058.05.098.101.098.05 0 .09-.04.099-.098l.255-2.105-.27-2.154c-.009-.057-.05-.1-.1-.1m-.899.828c-.06 0-.091.037-.104.094L0 14.479l.165 1.308c.014.057.045.094.104.094.059 0 .09-.037.104-.094l.21-1.308-.21-1.332c-.014-.057-.045-.094-.104-.094m1.83-1.229c-.061 0-.12.045-.12.104l-.21 2.563.225 2.458c0 .06.045.104.105.104.061 0 .12-.044.12-.104l.24-2.458-.24-2.563c0-.06-.059-.104-.12-.104m.945-.089c-.075 0-.135.06-.15.135l-.193 2.64.21 2.544c.016.077.075.136.15.136.074 0 .134-.06.149-.136l.24-2.544-.24-2.64c-.015-.075-.075-.135-.15-.135m1.154-.224c-.09 0-.15.074-.165.164l-.18 2.82.195 2.52c.016.09.075.164.165.164.089 0 .149-.074.164-.164l.21-2.52-.21-2.82c-.015-.09-.075-.164-.164-.164m.93-.09c-.09 0-.165.075-.18.165l-.164 2.91.18 2.49c.015.09.09.165.18.165.089 0 .164-.075.179-.165l.195-2.49-.195-2.91c-.015-.09-.09-.165-.18-.165m1.11-.134c-.105 0-.18.09-.195.194l-.15 3.045.165 2.46c.016.105.09.195.195.195.104 0 .18-.09.194-.195l.18-2.46-.18-3.045c-.014-.104-.09-.194-.194-.194m.915-.045c-.105 0-.195.09-.21.195l-.135 3.09.15 2.43c.015.105.105.195.21.195.104 0 .194-.09.209-.195l.165-2.43-.165-3.09c-.015-.105-.105-.195-.21-.195m1.14-.075c-.12 0-.21.105-.225.225l-.12 3.165.135 2.4c.015.12.105.225.225.225.119 0 .21-.105.224-.225l.15-2.4-.15-3.165c-.014-.12-.105-.225-.224-.225m.9-.015c-.12 0-.225.105-.24.225l-.105 3.18.12 2.37c.015.12.12.225.24.225.119 0 .224-.105.239-.225l.135-2.37-.135-3.18c-.015-.12-.12-.225-.24-.225m2.31-1.11c-.165 0-.315.06-.435.165-.12-.87-.87-1.53-1.77-1.53-.24 0-.465.06-.675.15-.15-.87-.9-1.53-1.8-1.53-.24 0-.465.06-.675.15-.15-.87-.9-1.53-1.8-1.53-.99 0-1.8.81-1.8 1.8v4.5c0 .99.81 1.8 1.8 1.8h7.2c.99 0 1.8-.81 1.8-1.8s-.81-1.8-1.8-1.8z"/></svg>
+                </div>
+                <span class="streaming-name">SoundCloud</span>
+                <span class="streaming-action">Ouvir agora →</span>
+            </a>
+
+            <a href="#" class="streaming-card streaming-youtube fade-in fade-in-delay-1">
+                <div class="streaming-icon">
+                    <svg class="icon-svg-lg" viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+                </div>
+                <span class="streaming-name">YouTube</span>
+                <span class="streaming-action">Assistir agora →</span>
+            </a>
+
+            <a href="#" class="streaming-card streaming-deezer fade-in fade-in-delay-2">
+                <div class="streaming-icon">
+                    <svg class="icon-svg-lg" viewBox="0 0 24 24"><path d="M18.81 4.16v3.03H24V4.16h-5.19zM6.27 8.38v3.027h5.189V8.38H6.27zm6.27 0v3.027h5.19V8.38h-5.19zm6.27 0v3.027H24V8.38h-5.19zM6.27 12.594v3.027h5.189v-3.027H6.27zm6.27 0v3.027h5.19v-3.027h-5.19zm6.27 0v3.027H24v-3.027h-5.19zM6.27 16.81v3.03h5.189v-3.03H6.27zm6.27 0v3.03h5.19v-3.03h-5.19zm6.27 0v3.03H24v-3.03h-5.19z"/></svg>
+                </div>
+                <span class="streaming-name">Deezer</span>
+                <span class="streaming-action">Ouvir agora →</span>
+            </a>
+
+            <a href="#" class="streaming-card streaming-tidal fade-in fade-in-delay-3">
+                <div class="streaming-icon">
+                    <svg class="icon-svg-lg" viewBox="0 0 24 24"><path d="M12.012 3.992L8.008 7.996 4.004 3.992 0 7.996 4.004 12l4.004-4.004L12.012 12l4.004-4.004L20.02 12l4.004-4.004-4.004-4.004-4.004 4.004-4.004-4.004zM12.012 16.008l-4.004 4.004 4.004 4.004 4.004-4.004-4.004-4.004z"/></svg>
+                </div>
+                <span class="streaming-name">Tidal</span>
+                <span class="streaming-action">Ouvir agora →</span>
+            </a>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="section" id="contato">
+        <div class="section-header fade-in">
+            <p class="section-label">// Estabelecer Conexão</p>
+            <h2 class="section-title">CONTATO</h2>
+            <div class="section-divider"></div>
+        </div>
+
+        <div class="contact-grid">
+            <div class="contact-info fade-in">
+                <p class="contact-info-text">
+                    Para bookings, colaborações, remixes ou qualquer outra questão relacionada ao projeto NOCT6, entre em contato através dos canais abaixo. O sistema está sempre online.
+                </p>
+
+                <div class="contact-item">
+                    <div class="contact-item-icon"></div>
+                    <div>
+                        <p class="contact-item-label">Email</p>
+                        <p class="contact-item-value"><a href="mailto:contact@noct6.com">contact@noct6.com</a></p>
+                    </div>
+                </div>
+
+                <div class="contact-item">
+                    <div class="contact-item-icon">📱</div>
+                    <div>
+                        <p class="contact-item-label">Instagram</p>
+                        <p class="contact-item-value"><a href="#">@noct6.official</a></p>
+                    </div>
+                </div>
+
+                <div class="contact-item">
+                    <div class="contact-item-icon"></div>
+                    <div>
+                        <p class="contact-item-label">Booking / Management</p>
+                        <p class="contact-item-value"><a href="mailto:booking@noct6.com">booking@noct6.com</a></p>
+                    </div>
+                </div>
+
+                <div class="contact-item">
+                    <div class="contact-item-icon"></div>
+                    <div>
+                        <p class="contact-item-label">Localização</p>
+                        <p class="contact-item-value">São Paulo, Brasil</p>
+                    </div>
+                </div>
+            </div>
+
+            <form class="contact-form fade-in" onsubmit="handleSubmit(event)">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label class="form-label">Nome</label>
+                        <input type="text" class="form-input" placeholder="Seu nome" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Email</label>
+                        <input type="email" class="form-input" placeholder="seu@email.com" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Assunto</label>
+                    <input type="text" class="form-input" placeholder="Booking / Colaboração / Outro">
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Mensagem</label>
+                    <textarea class="form-textarea" placeholder="Descreva sua mensagem..." required></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary" style="width: 100%; justify-content: center;">
+                    <svg class="icon-svg" viewBox="0 0 24 24"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg>
+                    Enviar Mensagem
+                </button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-brand">
+                <span class="footer-logo">NOCT6</span>
+                <p class="footer-desc">Frequency Architect. Sonic duality in its most absolute form. System online...</p>
+                <div class="footer-social">
+                    <a href="#" title="Spotify">
+                        <svg class="icon-svg" viewBox="0 0 24 24"><path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z"/></svg>
+                    </a>
+                    <a href="#" title="Instagram">
+                        <svg class="icon-svg" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+                    </a>
+                    <a href="#" title="TikTok">
+                        <svg class="icon-svg" viewBox="0 0 24 24"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1v-3.5a6.37 6.37 0 00-.79-.05A6.34 6.34 0 003.15 15.2a6.34 6.34 0 0010.86 4.46V13a8.28 8.28 0 005.58 2.17V11.7a4.83 4.83 0 01-3.77-1.24V6.69h3.77z"/></svg>
+                    </a>
+                    <a href="#" title="YouTube">
+                        <svg class="icon-svg" viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+                    </a>
+                </div>
+            </div>
+
+            <div class="footer-center">
+                <div class="footer-streaming">
+                    <a href="#" title="Spotify">
+                        <svg class="icon-svg" viewBox="0 0 24 24"><path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z"/></svg>
+                    </a>
+                    <a href="#" title="Apple Music">
+                        <svg class="icon-svg" viewBox="0 0 24 24"><path d="M23.994 6.124a9.23 9.23 0 00-.24-2.19c-.317-1.31-1.062-2.31-2.18-3.043a5.022 5.022 0 00-1.877-.726 10.496 10.496 0 00-1.564-.15c-.04-.003-.083-.01-.124-.013H5.986c-.152.01-.303.017-.455.026-.747.043-1.49.123-2.193.4-1.336.53-2.3 1.452-2.865 2.78-.192.448-.292.925-.363 1.408-.056.392-.088.785-.1 1.18 0 .032-.007.062-.01.093v12.223c.01.14.017.283.027.424.05.815.154 1.624.497 2.373.65 1.42 1.738 2.353 3.234 2.802.42.127.856.187 1.293.228.555.053 1.11.06 1.667.06h11.03c.525 0 1.048-.034 1.57-.1.823-.106 1.597-.35 2.288-.82a4.75 4.75 0 001.88-2.207c.186-.45.293-.927.363-1.41.087-.593.1-1.19.097-1.788-.003-3.917-.003-7.834-.003-11.752z"/></svg>
+                    </a>
+                    <a href="#" title="SoundCloud">
+                        <svg class="icon-svg" viewBox="0 0 24 24"><path d="M1.175 12.225c-.051 0-.094.046-.101.1l-.233 2.154.233 2.105c.007.058.05.098.101.098.05 0 .09-.04.099-.098l.255-2.105-.27-2.154c-.009-.057-.05-.1-.1-.1m10.83 1.818c-.105 0-.21.105-.225.225l-.12 3.165.135 2.4c.015.12.105.225.225.225.119 0 .21-.105.224-.225l.15-2.4-.15-3.165c-.014-.12-.105-.225-.224-.225m.9-.015c-.12 0-.225.105-.24.225l-.105 3.18.12 2.37c.015.12.12.225.24.225.119 0 .224-.105.239-.225l.135-2.37-.135-3.18c-.015-.12-.12-.225-.24-.225m2.31-1.11c-.165 0-.315.06-.435.165-.12-.87-.87-1.53-1.77-1.53-.24 0-.465.06-.675.15-.15-.87-.9-1.53-1.8-1.53-.24 0-.465.06-.675.15-.15-.87-.9-1.53-1.8-1.53-.99 0-1.8.81-1.8 1.8v4.5c0 .99.81 1.8 1.8 1.8h7.2c.99 0 1.8-.81 1.8-1.8s-.81-1.8-1.8-1.8z"/></svg>
+                    </a>
+                    <a href="#" title="YouTube">
+                        <svg class="icon-svg" viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+                    </a>
+                    <a href="#" title="Deezer">
+                        <svg class="icon-svg" viewBox="0 0 24 24"><path d="M18.81 4.16v3.03H24V4.16h-5.19zM6.27 8.38v3.027h5.189V8.38H6.27zm6.27 0v3.027h5.19V8.38h-5.19zm6.27 0v3.027H24V8.38h-5.19zM6.27 12.594v3.027h5.189v-3.027H6.27zm6.27 0v3.027h5.19v-3.027h-5.19zm6.27 0v3.027H24v-3.027h-5.19zM6.27 16.81v3.03h5.189v-3.03H6.27zm6.27 0v3.03h5.19v-3.03h-5.19zm6.27 0v3.03H24v-3.03h-5.19z"/></svg>
+                    </a>
+                    <a href="#" title="Tidal">
+                        <svg class="icon-svg" viewBox="0 0 24 24"><path d="M12.012 3.992L8.008 7.996 4.004 3.992 0 7.996 4.004 12l4.004-4.004L12.012 12l4.004-4.004L20.02 12l4.004-4.004-4.004-4.004-4.004 4.004-4.004-4.004zM12.012 16.008l-4.004 4.004 4.004 4.004 4.004-4.004-4.004-4.004z"/></svg>
+                    </a>
+                </div>
+            </div>
+
+            <div class="footer-links">
+                <a href="#inicio">Início</a>
+                <a href="#musicas">Músicas</a>
+                <a href="#sobre">Quem Somos</a>
+                <a href="#contato">Contato</a>
+                <a href="#streaming">Streaming</a>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p class="footer-copy">© 2024 NOCT6. All rights reserved. Frequency Architect.</p>
+            <div class="footer-status">
+                <div class="status-dot"></div>
+                SYSTEM ONLINE
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        // Navbar scroll effect
+        window.addEventListener('scroll', () => {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // Mobile menu toggle
+        function toggleMenu() {
+            const navLinks = document.getElementById('navLinks');
+            const hamburger = document.getElementById('hamburger');
+            navLinks.classList.toggle('open');
+            hamburger.classList.toggle('active');
+        }
+
+        // Close menu on link click
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                document.getElementById('navLinks').classList.remove('open');
+                document.getElementById('hamburger').classList.remove('active');
+            });
+        });
+
+        // Active nav link on scroll
+        const sections = document.querySelectorAll('section[id]');
+        window.addEventListener('scroll', () => {
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop - 100;
+                if (window.scrollY >= sectionTop) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            document.querySelectorAll('.nav-links a').forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === '#' + current) {
+                    link.classList.add('active');
+                }
+            });
+        });
+
+        // Fade in on scroll
+        const fadeElements = document.querySelectorAll('.fade-in');
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        fadeElements.forEach(el => observer.observe(el));
+
+        // Language change
+        function changeLanguage(lang) {
+            const texts = {
+                pt: {
+                    inicio: 'Início',
+                    musicas: 'Músicas',
+                    contato: 'Contato',
+                    sobre: 'Quem Somos',
+                    ouvir: 'Ouvir Agora',
+                    conheca: 'Conheça o Projeto',
+                    systemOnline: '// Sistema Online',
+                    catalogo: '// Catálogo Sonoro',
+                    plataformas: '// Plataformas',
+                    oucaAgora: 'OUÇA AGORA',
+                    conexao: '// Estabelecer Conexão',
+                    enviar: 'Enviar Mensagem',
+                    statusOnline: 'SYSTEM ONLINE'
+                },
+                en: {
+                    inicio: 'Home',
+                    musicas: 'Music',
+                    contato: 'Contact',
+                    sobre: 'About Us',
+                    ouvir: 'Listen Now',
+                    conheca: 'About the Project',
+                    systemOnline: '// System Online',
+                    catalogo: '// Sound Catalog',
+                    plataformas: '// Platforms',
+                    oucaAgora: 'LISTEN NOW',
+                    conexao: '// Establish Connection',
+                    enviar: 'Send Message',
+                    statusOnline: 'SYSTEM ONLINE'
+                },
+                es: {
+                    inicio: 'Inicio',
+                    musicas: 'Música',
+                    contato: 'Contacto',
+                    sobre: 'Quiénes Somos',
+                    ouvir: 'Escuchar Ahora',
+                    conheca: 'Conoce el Proyecto',
+                    systemOnline: '// Sistema en Línea',
+                    catalogo: '// Catálogo Sonoro',
+                    plataformas: '// Plataformas',
+                    oucaAgora: 'ESCUCHA AHORA',
+                    conexao: '// Establecer Conexión',
+                    enviar: 'Enviar Mensaje',
+                    statusOnline: 'SISTEMA EN LÍNEA'
+                }
+            };
+
+            const t = texts[lang];
+            document.querySelector('.section-label').textContent = t.systemOnline;
+        }
+
+        // Form submit
+        function handleSubmit(e) {
+            e.preventDefault();
+            const btn = e.target.querySelector('button[type="submit"]');
+            const originalText = btn.innerHTML;
+            btn.innerHTML = '✓ Mensagem Enviada!';
+            btn.style.background = 'linear-gradient(135deg, #39ff14, #00d4ff)';
+            setTimeout(() => {
+                btn.innerHTML = originalText;
+                btn.style.background = '';
+                e.target.reset();
+            }, 3000);
+        }
+
+        // Smooth reveal on load
+        window.addEventListener('load', () => {
+            document.body.style.opacity = '1';
+        });
+    </script>
+</body>
+</html>
