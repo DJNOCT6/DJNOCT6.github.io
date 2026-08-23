@@ -4,6 +4,33 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>NOCT6 | Frequency Architect</title>
+	
+	<!-- Metadados Principais (SEO) -->
+    <meta name="description" content="Dualidade sônica em sua forma mais absoluta. NOCT6 é o arquiteto de frequências focado em Midtempo Bass, Brazilian Bass e Cinematic Cyberpunk.">
+    <meta name="keywords" content="NOCT6, Machine Dawn, Midtempo Bass, Brazilian Bass, Cinematic Cyberpunk, Electronic Music, DJ, Produtor Musical">
+    <meta name="author" content="NOCT6">
+    <meta name="robots" content="index, follow">
+    <meta name="theme-color" content="#b829dd">
+
+    <!-- Ícones da Aba do Navegador (Favicon em PNG) -->
+    <link rel="icon" type="image/png" sizes="32x32" href="images/noct6_logo.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="images/noct6_logo.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="images/noct6_logo.png">
+
+    <!-- Open Graph (Pré-visualização para Facebook, WhatsApp, LinkedIn) -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://djnoct6.github.io/">
+    <meta property="og:title" content="NOCT6 | Frequency Architect">
+    <meta property="og:description" content="A trilha sonora definitiva para seus 365 dias. Deixe o grave tomar o controle da sua noite com o sistema Machine Dawn.">
+    <meta property="og:image" content="https://djnoct6.github.io/images/noct6_logo.png">
+
+    <!-- Twitter Card (Pré-visualização para o X / Twitter) -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:url" content="https://djnoct6.github.io/">
+    <meta name="twitter:title" content="NOCT6 | Frequency Architect">
+    <meta name="twitter:description" content="A trilha sonora definitiva para seus 365 dias. Deixe o grave tomar o controle da sua noite.">
+    <meta name="twitter:image" content="https://djnoct6.github.io/images/noct6_logo.png">
+	
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Rajdhani:wght@300;400;500;600;700&family=Share+Tech+Mono&display=swap" rel="stylesheet">
     <style>
@@ -562,6 +589,16 @@
             background: var(--gradient-neon);
             z-index: -1;
         }
+		
+		.about-avatar img {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid var(--dark-card);
+            position: relative;
+            z-index: 1;
+        }
 
         .about-avatar-inner {
             width: 100%;
@@ -815,6 +852,54 @@
             border-radius: 12px;
             color: var(--neon-purple);
             letter-spacing: 1px;
+        }
+		
+		/* Imagem de Capa Real */
+        .music-card-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        /* Interface do Player (Barra e Tempo) */
+        .audio-player-ui {
+            margin-top: 15px;
+            width: 100%;
+            border-top: 1px solid rgba(184, 41, 221, 0.1);
+            padding-top: 12px;
+        }
+
+        .progress-area {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-family: 'Share Tech Mono', monospace;
+            font-size: 0.7rem;
+            color: var(--text-secondary);
+        }
+
+        .progress-bar-bg {
+            flex-grow: 1;
+            height: 4px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 2px;
+            cursor: pointer;
+            position: relative;
+            transition: height 0.2s ease;
+        }
+
+        .progress-bar-bg:hover {
+            height: 6px;
+        }
+
+        .progress-bar-fill {
+            height: 100%;
+            width: 0%;
+            background: var(--neon-purple);
+            border-radius: 2px;
+            box-shadow: var(--glow-purple);
+            pointer-events: none;
         }
 
         /* ===== STREAMING SECTION ===== */
@@ -1404,8 +1489,8 @@
     <section class="hero" id="inicio">
         <div class="hero-content">
             <div class="hero-avatar">
-                <div class="hero-avatar-placeholder"></div>
-            </div>
+				<img src="images/noct6_logo.png" alt="Logo NOCT6">
+			</div>
             <h1 class="hero-title">NOCT6</h1>
             <p class="hero-subtitle">Frequency Architect</p>
             <p class="hero-tagline">Sonic duality in its most absolute form</p>
@@ -1436,7 +1521,7 @@
         <div class="about-card fade-in">
             <div class="about-left">
                 <div class="about-avatar">
-                    <div class="about-avatar-inner"></div>
+                    <img src="images/noct6_logo.png" alt="Logo NOCT6">
                 </div>
                 <h3 class="about-name">NOCT6</h3>
                 <button class="about-edit-btn">
@@ -1446,8 +1531,16 @@
             </div>
             <div class="about-right">
                 <p class="about-text">
-                    Sonic duality in its most absolute form. <strong>NOCT6</strong> is the frequency architect designed to be the ultimate soundtrack for your 365 days. The vision is complete dominance over both sides of the human and digital experience. By daylight, the delivery is focused on emotion and motivation: inspiring harmonies, organic melodies, and the vital energy needed to drive your routine and elevate your mind. But when night falls, the system reboots. The human side ceases, and the machine awakens. NOCT6 takes control with aggressive and relentless sound engineering, dominating the underworld of <strong>Midtempo Bass, Brazilian Bass, and Cinematic Cyberpunk</strong>. Creator of immersive narratives and the "Machine Dawn" universe, his nocturnal productions are defined by crushing Heavy Sub-Bass, industrial textures, dark synths, and a high-voltage atmosphere built to destroy the dancefloor. It is the perfect fusion of organic feeling and the cold precision of a system hacking the grid. Choose your moment. Let inspiration guide your day, and let the bass take control of your night. <strong>System online...</strong>
-                </p>
+					Dualidade sônica em sua forma mais absoluta. <strong>NOCT6</strong> é o arquiteto de frequências projetado para ser a trilha sonora definitiva dos seus 365 dias.<br><br>
+					
+					A visão é o domínio completo sobre ambos os lados da experiência humana e digital. Durante o dia, a entrega é focada em emoção e motivação: harmonias inspiradoras, melodias orgânicas e a energia vital necessária para impulsionar a sua rotina e elevar a sua mente.<br><br>
+					
+					Mas quando a noite cai, o sistema reinicia. O lado humano cessa e a máquina desperta. NOCT6 assume o controle com uma engenharia de som agressiva e implacável, dominando o submundo do <strong>Midtempo Bass, Brazilian Bass e Cinematic Cyberpunk</strong>.<br><br>
+					
+					Criador de narrativas imersivas e do universo "Machine Dawn", suas produções noturnas são definidas por Sub-Graves pesados e esmagadores, texturas industriais, sintetizadores sombrios e uma atmosfera de alta voltagem construída para destruir a pista de dança. É a fusão perfeita entre o sentimento orgânico e a precisão fria de um sistema hackeando a rede.<br><br>
+					
+					Escolha o seu momento. Deixe a inspiração guiar o seu dia e deixe o grave tomar o controle da sua noite. <strong>Sistema online...</strong>
+				</p>
                 <div class="about-tags">
                     <span class="tag">cyberpunk</span>
                     <span class="tag">electronic</span>
@@ -1458,16 +1551,16 @@
                     <span class="tag">brazilian bass</span>
                 </div>
                 <div class="about-social">
-                    <a href="#" class="social-icon" title="Spotify">
+                    <a href="https://open.spotify.com/intl-pt/artist/5Bw51rdRdT0kdIx4iwkwm1" class="social-icon" title="Spotify" target="_blank" rel="noopener noreferrer">
                         <svg class="icon-svg" viewBox="0 0 24 24"><path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z"/></svg>
                     </a>
-                    <a href="#" class="social-icon" title="Instagram">
+                    <a href="#" class="social-icon" title="Instagram" target="_blank" rel="noopener noreferrer">
                         <svg class="icon-svg" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
                     </a>
-                    <a href="#" class="social-icon" title="TikTok">
+                    <a href="https://www.tiktok.com/@dj_noct6" class="social-icon" title="TikTok" target="_blank" rel="noopener noreferrer">
                         <svg class="icon-svg" viewBox="0 0 24 24"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1v-3.5a6.37 6.37 0 00-.79-.05A6.34 6.34 0 003.15 15.2a6.34 6.34 0 0010.86 4.46V13a8.28 8.28 0 005.58 2.17V11.7a4.83 4.83 0 01-3.77-1.24V6.69h3.77z"/></svg>
                     </a>
-                    <a href="#" class="social-icon" title="YouTube">
+                    <a href="https://www.youtube.com/@dj_noct6" class="social-icon" title="YouTube" target="_blank" rel="noopener noreferrer">
                         <svg class="icon-svg" viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
                     </a>
                 </div>
@@ -1484,89 +1577,157 @@
         </div>
 
         <div class="music-grid">
+            
+            <!-- 1 BAILE CONNECTION -->
             <div class="music-card fade-in fade-in-delay-1">
                 <div class="music-card-cover">
-                    <div class="music-card-cover-bg cover-1">N6</div>
+                    <img src="images/THE_FUNK_HYBRID.jpg" alt="Capa The Funk Hybrid" class="music-card-image">
                     <div class="music-play-overlay">
-                        <button class="play-btn">▶</button>
+                        <button class="play-btn" data-audio="audio/AMOSTRA_BAILE_CONNECTION.mp3">▶</button>
                     </div>
                 </div>
                 <div class="music-card-info">
-                    <h3 class="music-card-title">MACHINE DAWN</h3>
-                    <p class="music-card-meta">NOCT6 • 2024</p>
-                    <span class="music-card-genre">Cyberpunk Bass</span>
+                    <h3 class="music-card-title">BAILE CONNECTION</h3>
+                    <p class="music-card-meta">NOCT6 • 2026</p>
+                    <span class="music-card-genre">Funk Hybrid</span>
+                    
+                    <div class="audio-player-ui" style="display: none;">
+                        <div class="progress-area">
+                            <span class="current-time">0:00</span>
+                            <div class="progress-bar-bg">
+                                <div class="progress-bar-fill"></div>
+                            </div>
+                            <span class="total-time">0:00</span>
+                        </div>
+                    </div>
                 </div>
             </div>
 
+            <!-- 2 NIGHT VISION -->
             <div class="music-card fade-in fade-in-delay-2">
                 <div class="music-card-cover">
-                    <div class="music-card-cover-bg cover-2">N6</div>
+                    <img src="images/OVERLOAD.jpg" alt="Capa Overload" class="music-card-image">
                     <div class="music-play-overlay">
-                        <button class="play-btn">▶</button>
+                        <button class="play-btn" data-audio="audio/AMOSTRA_NIGHT_VISION.mp3">▶</button>
                     </div>
                 </div>
                 <div class="music-card-info">
-                    <h3 class="music-card-title">GRID PROTOCOL</h3>
-                    <p class="music-card-meta">NOCT6 • 2024</p>
-                    <span class="music-card-genre">Midtempo Bass</span>
+                    <h3 class="music-card-title">NIGHT VISION</h3>
+                    <p class="music-card-meta">NOCT6 • 2026</p>
+                    <span class="music-card-genre">Eletronic \ Brazilian Bass</span>
+                    
+                    <div class="audio-player-ui" style="display: none;">
+                        <div class="progress-area">
+                            <span class="current-time">0:00</span>
+                            <div class="progress-bar-bg">
+                                <div class="progress-bar-fill"></div>
+                            </div>
+                            <span class="total-time">0:00</span>
+                        </div>
+                    </div>
                 </div>
             </div>
 
+            <!-- 3 BRAZILIAN INFLUENCE -->
             <div class="music-card fade-in fade-in-delay-3">
                 <div class="music-card-cover">
-                    <div class="music-card-cover-bg cover-3">N6</div>
+                    <img src="images/THE_FUNK_HYBRID.jpg" alt="Capa The Funk Hybrid" class="music-card-image">
                     <div class="music-play-overlay">
-                        <button class="play-btn">▶</button>
+                        <button class="play-btn" data-audio="audio/AMOSTRA_BRAZILIAN_INFLUENCE.mp3">▶</button>
                     </div>
                 </div>
                 <div class="music-card-info">
-                    <h3 class="music-card-title">NEURAL OVERRIDE</h3>
-                    <p class="music-card-meta">NOCT6 • 2024</p>
-                    <span class="music-card-genre">Industrial Dance</span>
+                    <h3 class="music-card-title">BRAZILIAN INFLUENCE</h3>
+                    <p class="music-card-meta">NOCT6 • 2026</p>
+                    <span class="music-card-genre">Funk Hybrid</span>
+                    
+                    <div class="audio-player-ui" style="display: none;">
+                        <div class="progress-area">
+                            <span class="current-time">0:00</span>
+                            <div class="progress-bar-bg">
+                                <div class="progress-bar-fill"></div>
+                            </div>
+                            <span class="total-time">0:00</span>
+                        </div>
+                    </div>
                 </div>
             </div>
 
+            <!-- 4 TIME MACHINE -->
             <div class="music-card fade-in fade-in-delay-1">
                 <div class="music-card-cover">
-                    <div class="music-card-cover-bg cover-4">N6</div>
+                    <img src="images/OVERLOAD.jpg" alt="Capa Overload" class="music-card-image">
                     <div class="music-play-overlay">
-                        <button class="play-btn">▶</button>
+                        <button class="play-btn" data-audio="audio/AMOSTRA_TIME_MACHINE.mp3">▶</button>
                     </div>
                 </div>
                 <div class="music-card-info">
-                    <h3 class="music-card-title">SUB BASS REBELLION</h3>
-                    <p class="music-card-meta">NOCT6 • 2023</p>
-                    <span class="music-card-genre">Brazilian Bass</span>
+                    <h3 class="music-card-title">TIME MACHINE</h3>
+                    <p class="music-card-meta">NOCT6 • 2026</p>
+                    <span class="music-card-genre">Eletronic \ Brazilian Bass</span>
+                    
+                    <div class="audio-player-ui" style="display: none;">
+                        <div class="progress-area">
+                            <span class="current-time">0:00</span>
+                            <div class="progress-bar-bg">
+                                <div class="progress-bar-fill"></div>
+                            </div>
+                            <span class="total-time">0:00</span>
+                        </div>
+                    </div>
                 </div>
             </div>
 
+            <!-- 5 RUMBLE THE FLOOR -->
             <div class="music-card fade-in fade-in-delay-2">
                 <div class="music-card-cover">
-                    <div class="music-card-cover-bg cover-5">N6</div>
+                    <img src="images/DEEP_GRAVITY.jpg" alt="Capa Deep Gravity" class="music-card-image">
                     <div class="music-play-overlay">
-                        <button class="play-btn">▶</button>
+                        <button class="play-btn" data-audio="audio/AMOSTRA_RUMBLE_THE_FLOOR.mp3">▶</button>
                     </div>
                 </div>
                 <div class="music-card-info">
-                    <h3 class="music-card-title">DARK SYNTHESIS</h3>
-                    <p class="music-card-meta">NOCT6 • 2023</p>
-                    <span class="music-card-genre">Electronic</span>
+                    <h3 class="music-card-title">RUMBLE THE FLOOR</h3>
+                    <p class="music-card-meta">NOCT6 • 2026</p>
+                    <span class="music-card-genre">Eletronic \ Brazilian Bass</span>
+                    
+                    <div class="audio-player-ui" style="display: none;">
+                        <div class="progress-area">
+                            <span class="current-time">0:00</span>
+                            <div class="progress-bar-bg">
+                                <div class="progress-bar-fill"></div>
+                            </div>
+                            <span class="total-time">0:00</span>
+                        </div>
+                    </div>
                 </div>
             </div>
 
+            <!-- 6 MARGINAL 011 -->
             <div class="music-card fade-in fade-in-delay-3">
                 <div class="music-card-cover">
-                    <div class="music-card-cover-bg cover-6">N6</div>
+                    <img src="images/DEPOIS_DA_CHUVA.png" alt="Capa Depois da Chuva" class="music-card-image">
                     <div class="music-play-overlay">
-                        <button class="play-btn">▶</button>
+                        <button class="play-btn" data-audio="audio/AMOSTRA_MARGINAL_011.mp3">▶</button>
                     </div>
                 </div>
                 <div class="music-card-info">
-                    <h3 class="music-card-title">SYSTEM REBOOT</h3>
-                    <p class="music-card-meta">NOCT6 • 2023</p>
-                    <span class="music-card-genre">Cyberpunk</span>
+                    <h3 class="music-card-title">MARGINAL 011</h3>
+                    <p class="music-card-meta">NOCT6 • 2026</p>
+                    <span class="music-card-genre">Trap</span>
+                    
+                    <div class="audio-player-ui" style="display: none;">
+                        <div class="progress-area">
+                            <span class="current-time">0:00</span>
+                            <div class="progress-bar-bg">
+                                <div class="progress-bar-fill"></div>
+                            </div>
+                            <span class="total-time">0:00</span>
+                        </div>
+                    </div>
                 </div>
             </div>
+
         </div>
     </section>
 
@@ -1579,7 +1740,7 @@
         </div>
 
         <div class="streaming-grid">
-            <a href="#" class="streaming-card streaming-spotify fade-in fade-in-delay-1">
+            <a href="https://open.spotify.com/intl-pt/artist/5Bw51rdRdT0kdIx4iwkwm1" class="streaming-card streaming-spotify fade-in fade-in-delay-1" target="_blank" rel="noopener noreferrer">
                 <div class="streaming-icon">
                     <svg class="icon-svg-lg" viewBox="0 0 24 24"><path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z"/></svg>
                 </div>
@@ -1587,7 +1748,7 @@
                 <span class="streaming-action">Ouvir agora →</span>
             </a>
 
-            <a href="#" class="streaming-card streaming-apple fade-in fade-in-delay-2">
+            <a href="#" class="streaming-card streaming-apple fade-in fade-in-delay-2" target="_blank" rel="noopener noreferrer">
                 <div class="streaming-icon">
                     <svg class="icon-svg-lg" viewBox="0 0 24 24"><path d="M23.994 6.124a9.23 9.23 0 00-.24-2.19c-.317-1.31-1.062-2.31-2.18-3.043a5.022 5.022 0 00-1.877-.726 10.496 10.496 0 00-1.564-.15c-.04-.003-.083-.01-.124-.013H5.986c-.152.01-.303.017-.455.026-.747.043-1.49.123-2.193.4-1.336.53-2.3 1.452-2.865 2.78-.192.448-.292.925-.363 1.408-.056.392-.088.785-.1 1.18 0 .032-.007.062-.01.093v12.223c.01.14.017.283.027.424.05.815.154 1.624.497 2.373.65 1.42 1.738 2.353 3.234 2.802.42.127.856.187 1.293.228.555.053 1.11.06 1.667.06h11.03c.525 0 1.048-.034 1.57-.1.823-.106 1.597-.35 2.288-.82a4.75 4.75 0 001.88-2.207c.186-.45.293-.927.363-1.41.087-.593.1-1.19.097-1.788-.003-3.917-.003-7.834-.003-11.752zm-7.39 11.033c-.01.06-.017.12-.03.18a1.77 1.77 0 01-1.69 1.37c-.27.007-.54-.03-.81-.06a2.77 2.77 0 01-1.28-.46 2.83 2.83 0 01-1.09-1.21c-.16-.34-.24-.7-.27-1.07-.04-.47.01-.94.12-1.4.19-.79.57-1.47 1.17-2.02.46-.42 1-.72 1.61-.88.34-.09.69-.13 1.04-.14.57-.01 1.12.09 1.64.32.72.31 1.28.8 1.67 1.49.26.46.4.96.44 1.49.02.28.01.56-.02.84-.02.18-.04.36-.07.54l-.01.01zm.27-6.79c-.04.33-.15.64-.33.92-.36.56-.87.94-1.5 1.14-.36.12-.73.17-1.11.18-.57.01-1.12-.09-1.64-.31-.73-.32-1.29-.82-1.68-1.52-.25-.45-.39-.94-.43-1.46-.02-.29-.01-.58.02-.87.04-.35.16-.68.35-.98.37-.58.89-.97 1.54-1.17.35-.11.71-.16 1.08-.17.58 0 1.14.1 1.67.33.71.31 1.26.79 1.64 1.47.26.46.4.96.44 1.49.02.29.01.58-.02.87l-.03.08z"/></svg>
                 </div>
@@ -1595,7 +1756,7 @@
                 <span class="streaming-action">Ouvir agora →</span>
             </a>
 
-            <a href="#" class="streaming-card streaming-soundcloud fade-in fade-in-delay-3">
+            <a href="#" class="streaming-card streaming-soundcloud fade-in fade-in-delay-3" target="_blank" rel="noopener noreferrer">
                 <div class="streaming-icon">
                     <svg class="icon-svg-lg" viewBox="0 0 24 24"><path d="M1.175 12.225c-.051 0-.094.046-.101.1l-.233 2.154.233 2.105c.007.058.05.098.101.098.05 0 .09-.04.099-.098l.255-2.105-.27-2.154c-.009-.057-.05-.1-.1-.1m-.899.828c-.06 0-.091.037-.104.094L0 14.479l.165 1.308c.014.057.045.094.104.094.059 0 .09-.037.104-.094l.21-1.308-.21-1.332c-.014-.057-.045-.094-.104-.094m1.83-1.229c-.061 0-.12.045-.12.104l-.21 2.563.225 2.458c0 .06.045.104.105.104.061 0 .12-.044.12-.104l.24-2.458-.24-2.563c0-.06-.059-.104-.12-.104m.945-.089c-.075 0-.135.06-.15.135l-.193 2.64.21 2.544c.016.077.075.136.15.136.074 0 .134-.06.149-.136l.24-2.544-.24-2.64c-.015-.075-.075-.135-.15-.135m1.154-.224c-.09 0-.15.074-.165.164l-.18 2.82.195 2.52c.016.09.075.164.165.164.089 0 .149-.074.164-.164l.21-2.52-.21-2.82c-.015-.09-.075-.164-.164-.164m.93-.09c-.09 0-.165.075-.18.165l-.164 2.91.18 2.49c.015.09.09.165.18.165.089 0 .164-.075.179-.165l.195-2.49-.195-2.91c-.015-.09-.09-.165-.18-.165m1.11-.134c-.105 0-.18.09-.195.194l-.15 3.045.165 2.46c.016.105.09.195.195.195.104 0 .18-.09.194-.195l.18-2.46-.18-3.045c-.014-.104-.09-.194-.194-.194m.915-.045c-.105 0-.195.09-.21.195l-.135 3.09.15 2.43c.015.105.105.195.21.195.104 0 .194-.09.209-.195l.165-2.43-.165-3.09c-.015-.105-.105-.195-.21-.195m1.14-.075c-.12 0-.21.105-.225.225l-.12 3.165.135 2.4c.015.12.105.225.225.225.119 0 .21-.105.224-.225l.15-2.4-.15-3.165c-.014-.12-.105-.225-.224-.225m.9-.015c-.12 0-.225.105-.24.225l-.105 3.18.12 2.37c.015.12.12.225.24.225.119 0 .224-.105.239-.225l.135-2.37-.135-3.18c-.015-.12-.12-.225-.24-.225m2.31-1.11c-.165 0-.315.06-.435.165-.12-.87-.87-1.53-1.77-1.53-.24 0-.465.06-.675.15-.15-.87-.9-1.53-1.8-1.53-.24 0-.465.06-.675.15-.15-.87-.9-1.53-1.8-1.53-.99 0-1.8.81-1.8 1.8v4.5c0 .99.81 1.8 1.8 1.8h7.2c.99 0 1.8-.81 1.8-1.8s-.81-1.8-1.8-1.8z"/></svg>
                 </div>
@@ -1603,7 +1764,7 @@
                 <span class="streaming-action">Ouvir agora →</span>
             </a>
 
-            <a href="#" class="streaming-card streaming-youtube fade-in fade-in-delay-1">
+            <a href="https://www.youtube.com/@dj_noct6" class="streaming-card streaming-youtube fade-in fade-in-delay-1" target="_blank" rel="noopener noreferrer">
                 <div class="streaming-icon">
                     <svg class="icon-svg-lg" viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
                 </div>
@@ -1611,7 +1772,7 @@
                 <span class="streaming-action">Assistir agora →</span>
             </a>
 
-            <a href="#" class="streaming-card streaming-deezer fade-in fade-in-delay-2">
+            <a href="#" class="streaming-card streaming-deezer fade-in fade-in-delay-2" target="_blank" rel="noopener noreferrer">
                 <div class="streaming-icon">
                     <svg class="icon-svg-lg" viewBox="0 0 24 24"><path d="M18.81 4.16v3.03H24V4.16h-5.19zM6.27 8.38v3.027h5.189V8.38H6.27zm6.27 0v3.027h5.19V8.38h-5.19zm6.27 0v3.027H24V8.38h-5.19zM6.27 12.594v3.027h5.189v-3.027H6.27zm6.27 0v3.027h5.19v-3.027h-5.19zm6.27 0v3.027H24v-3.027h-5.19zM6.27 16.81v3.03h5.189v-3.03H6.27zm6.27 0v3.03h5.19v-3.03h-5.19zm6.27 0v3.03H24v-3.03h-5.19z"/></svg>
                 </div>
@@ -1619,7 +1780,7 @@
                 <span class="streaming-action">Ouvir agora →</span>
             </a>
 
-            <a href="#" class="streaming-card streaming-tidal fade-in fade-in-delay-3">
+            <a href="#" class="streaming-card streaming-tidal fade-in fade-in-delay-3" target="_blank" rel="noopener noreferrer">
                 <div class="streaming-icon">
                     <svg class="icon-svg-lg" viewBox="0 0 24 24"><path d="M12.012 3.992L8.008 7.996 4.004 3.992 0 7.996 4.004 12l4.004-4.004L12.012 12l4.004-4.004L20.02 12l4.004-4.004-4.004-4.004-4.004 4.004-4.004-4.004zM12.012 16.008l-4.004 4.004 4.004 4.004 4.004-4.004-4.004-4.004z"/></svg>
                 </div>
@@ -1644,15 +1805,15 @@
                 </p>
 
                 <div class="contact-item">
-                    <div class="contact-item-icon"></div>
+                    <div class="contact-item-icon"><svg class="icon-svg" viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg></div>
                     <div>
                         <p class="contact-item-label">Email</p>
-                        <p class="contact-item-value"><a href="mailto:contact@noct6.com">contact@noct6.com</a></p>
+                        <p class="contact-item-value"><a href="mailto:noct6music@gmail.com">noct6music@gmail.com</a></p>
                     </div>
                 </div>
 
                 <div class="contact-item">
-                    <div class="contact-item-icon">📱</div>
+                    <div class="contact-item-icon"><svg class="icon-svg" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg></div>
                     <div>
                         <p class="contact-item-label">Instagram</p>
                         <p class="contact-item-value"><a href="#">@noct6.official</a></p>
@@ -1660,7 +1821,7 @@
                 </div>
 
                 <div class="contact-item">
-                    <div class="contact-item-icon"></div>
+                    <div class="contact-item-icon"><svg class="icon-svg" viewBox="0 0 24 24"><path d="M20 6h-4V4c0-1.11-.89-2-2-2h-4c-1.11 0-2 .89-2 2v2H4c-1.11 0-1.99.89-1.99 2L2 19c0 1.11.89 2 2 2h16c1.11 0 2-.89 2-2V8c0-1.11-.89-2-2-2zm-6 0h-4V4h4v2z"/></svg></div>
                     <div>
                         <p class="contact-item-label">Booking / Management</p>
                         <p class="contact-item-value"><a href="mailto:booking@noct6.com">booking@noct6.com</a></p>
@@ -1668,7 +1829,7 @@
                 </div>
 
                 <div class="contact-item">
-                    <div class="contact-item-icon"></div>
+                    <div class="contact-item-icon"><svg class="icon-svg" viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5a2.5 2.5 0 010-5 2.5 2.5 0 010 5z"/></svg></div>
                     <div>
                         <p class="contact-item-label">Localização</p>
                         <p class="contact-item-value">São Paulo, Brasil</p>
@@ -1676,30 +1837,30 @@
                 </div>
             </div>
 
-            <form class="contact-form fade-in" onsubmit="handleSubmit(event)">
-                <div class="form-row">
-                    <div class="form-group">
-                        <label class="form-label">Nome</label>
-                        <input type="text" class="form-input" placeholder="Seu nome" required>
-                    </div>
-                    <div class="form-group">
-                        <label class="form-label">Email</label>
-                        <input type="email" class="form-input" placeholder="seu@email.com" required>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label class="form-label">Assunto</label>
-                    <input type="text" class="form-input" placeholder="Booking / Colaboração / Outro">
-                </div>
-                <div class="form-group">
-                    <label class="form-label">Mensagem</label>
-                    <textarea class="form-textarea" placeholder="Descreva sua mensagem..." required></textarea>
-                </div>
-                <button type="submit" class="btn btn-primary" style="width: 100%; justify-content: center;">
-                    <svg class="icon-svg" viewBox="0 0 24 24"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg>
-                    Enviar Mensagem
-                </button>
-            </form>
+            <form class="contact-form fade-in" action="https://formspree.io/f/myeganer" method="POST" id="my-form">
+				<div class="form-row">
+					<div class="form-group">
+						<label class="form-label">Nome</label>
+						<input type="text" name="Nome" class="form-input" placeholder="Seu nome" required>
+					</div>
+					<div class="form-group">
+						<label class="form-label">Email</label>
+						<input type="email" name="Email" class="form-input" placeholder="seu@email.com" required>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="form-label">Assunto</label>
+					<input type="text" name="Assunto" class="form-input" placeholder="Booking / Colaboração / Outro">
+				</div>
+				<div class="form-group">
+					<label class="form-label">Mensagem</label>
+					<textarea name="Mensagem" class="form-textarea" placeholder="Descreva sua mensagem..." required></textarea>
+				</div>
+				<button type="submit" class="btn btn-primary" style="width: 100%; justify-content: center;">
+					<svg class="icon-svg" viewBox="0 0 24 24"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg>
+					Enviar Mensagem
+				</button>
+			</form>
         </div>
     </section>
 
@@ -1710,43 +1871,22 @@
                 <span class="footer-logo">NOCT6</span>
                 <p class="footer-desc">Frequency Architect. Sonic duality in its most absolute form. System online...</p>
                 <div class="footer-social">
-                    <a href="#" title="Spotify">
+                    <a href="https://open.spotify.com/intl-pt/artist/5Bw51rdRdT0kdIx4iwkwm1" title="Spotify" target="_blank" rel="noopener noreferrer">
                         <svg class="icon-svg" viewBox="0 0 24 24"><path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z"/></svg>
                     </a>
-                    <a href="#" title="Instagram">
+                    <a href="#" title="Instagram" target="_blank" rel="noopener noreferrer">
                         <svg class="icon-svg" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
                     </a>
-                    <a href="#" title="TikTok">
+                    <a href="https://www.tiktok.com/@dj_noct6" title="TikTok" target="_blank" rel="noopener noreferrer">
                         <svg class="icon-svg" viewBox="0 0 24 24"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1v-3.5a6.37 6.37 0 00-.79-.05A6.34 6.34 0 003.15 15.2a6.34 6.34 0 0010.86 4.46V13a8.28 8.28 0 005.58 2.17V11.7a4.83 4.83 0 01-3.77-1.24V6.69h3.77z"/></svg>
                     </a>
-                    <a href="#" title="YouTube">
+                    <a href="https://www.youtube.com/@dj_noct6" title="YouTube" target="_blank" rel="noopener noreferrer">
                         <svg class="icon-svg" viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
                     </a>
                 </div>
             </div>
 
-            <div class="footer-center">
-                <div class="footer-streaming">
-                    <a href="#" title="Spotify">
-                        <svg class="icon-svg" viewBox="0 0 24 24"><path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z"/></svg>
-                    </a>
-                    <a href="#" title="Apple Music">
-                        <svg class="icon-svg" viewBox="0 0 24 24"><path d="M23.994 6.124a9.23 9.23 0 00-.24-2.19c-.317-1.31-1.062-2.31-2.18-3.043a5.022 5.022 0 00-1.877-.726 10.496 10.496 0 00-1.564-.15c-.04-.003-.083-.01-.124-.013H5.986c-.152.01-.303.017-.455.026-.747.043-1.49.123-2.193.4-1.336.53-2.3 1.452-2.865 2.78-.192.448-.292.925-.363 1.408-.056.392-.088.785-.1 1.18 0 .032-.007.062-.01.093v12.223c.01.14.017.283.027.424.05.815.154 1.624.497 2.373.65 1.42 1.738 2.353 3.234 2.802.42.127.856.187 1.293.228.555.053 1.11.06 1.667.06h11.03c.525 0 1.048-.034 1.57-.1.823-.106 1.597-.35 2.288-.82a4.75 4.75 0 001.88-2.207c.186-.45.293-.927.363-1.41.087-.593.1-1.19.097-1.788-.003-3.917-.003-7.834-.003-11.752z"/></svg>
-                    </a>
-                    <a href="#" title="SoundCloud">
-                        <svg class="icon-svg" viewBox="0 0 24 24"><path d="M1.175 12.225c-.051 0-.094.046-.101.1l-.233 2.154.233 2.105c.007.058.05.098.101.098.05 0 .09-.04.099-.098l.255-2.105-.27-2.154c-.009-.057-.05-.1-.1-.1m10.83 1.818c-.105 0-.21.105-.225.225l-.12 3.165.135 2.4c.015.12.105.225.225.225.119 0 .21-.105.224-.225l.15-2.4-.15-3.165c-.014-.12-.105-.225-.224-.225m.9-.015c-.12 0-.225.105-.24.225l-.105 3.18.12 2.37c.015.12.12.225.24.225.119 0 .224-.105.239-.225l.135-2.37-.135-3.18c-.015-.12-.12-.225-.24-.225m2.31-1.11c-.165 0-.315.06-.435.165-.12-.87-.87-1.53-1.77-1.53-.24 0-.465.06-.675.15-.15-.87-.9-1.53-1.8-1.53-.24 0-.465.06-.675.15-.15-.87-.9-1.53-1.8-1.53-.99 0-1.8.81-1.8 1.8v4.5c0 .99.81 1.8 1.8 1.8h7.2c.99 0 1.8-.81 1.8-1.8s-.81-1.8-1.8-1.8z"/></svg>
-                    </a>
-                    <a href="#" title="YouTube">
-                        <svg class="icon-svg" viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
-                    </a>
-                    <a href="#" title="Deezer">
-                        <svg class="icon-svg" viewBox="0 0 24 24"><path d="M18.81 4.16v3.03H24V4.16h-5.19zM6.27 8.38v3.027h5.189V8.38H6.27zm6.27 0v3.027h5.19V8.38h-5.19zm6.27 0v3.027H24V8.38h-5.19zM6.27 12.594v3.027h5.189v-3.027H6.27zm6.27 0v3.027h5.19v-3.027h-5.19zm6.27 0v3.027H24v-3.027h-5.19zM6.27 16.81v3.03h5.189v-3.03H6.27zm6.27 0v3.03h5.19v-3.03h-5.19zm6.27 0v3.03H24v-3.03h-5.19z"/></svg>
-                    </a>
-                    <a href="#" title="Tidal">
-                        <svg class="icon-svg" viewBox="0 0 24 24"><path d="M12.012 3.992L8.008 7.996 4.004 3.992 0 7.996 4.004 12l4.004-4.004L12.012 12l4.004-4.004L20.02 12l4.004-4.004-4.004-4.004-4.004 4.004-4.004-4.004zM12.012 16.008l-4.004 4.004 4.004 4.004 4.004-4.004-4.004-4.004z"/></svg>
-                    </a>
-                </div>
-            </div>
+
 
             <div class="footer-links">
                 <a href="#inicio">Início</a>
@@ -1758,7 +1898,7 @@
         </div>
 
         <div class="footer-bottom">
-            <p class="footer-copy">© 2024 NOCT6. All rights reserved. Frequency Architect.</p>
+            <p class="footer-copy">© 2026 NOCT6. All rights reserved. Frequency Architect.</p>
             <div class="footer-status">
                 <div class="status-dot"></div>
                 SYSTEM ONLINE
@@ -1884,24 +2024,156 @@
             document.querySelector('.section-label').textContent = t.systemOnline;
         }
 
-        // Form submit
-        function handleSubmit(e) {
-            e.preventDefault();
-            const btn = e.target.querySelector('button[type="submit"]');
+       // Form submit usando Formspree via AJAX
+        var form = document.getElementById("my-form");
+            
+        form.addEventListener("submit", async function(event) {
+            event.preventDefault();
+            const btn = form.querySelector('button[type="submit"]');
             const originalText = btn.innerHTML;
-            btn.innerHTML = '✓ Mensagem Enviada!';
-            btn.style.background = 'linear-gradient(135deg, #39ff14, #00d4ff)';
-            setTimeout(() => {
-                btn.innerHTML = originalText;
-                btn.style.background = '';
-                e.target.reset();
-            }, 3000);
-        }
+            
+            // Altera botão para estado de envio
+            btn.innerHTML = 'Enviando...';
+            btn.style.opacity = '0.7';
+            
+            var data = new FormData(event.target);
+            
+            try {
+                const response = await fetch(event.target.action, {
+                    method: form.method,
+                    body: data,
+                    headers: {
+                        'Accept': 'application/json'
+                    }
+                });
+                
+                if (response.ok) {
+                    btn.innerHTML = '✓ Mensagem Enviada!';
+                    btn.style.background = 'linear-gradient(135deg, #39ff14, #00d4ff)';
+                    btn.style.opacity = '1';
+                    form.reset();
+                    
+                    setTimeout(() => {
+                        btn.innerHTML = originalText;
+                        btn.style.background = '';
+                    }, 3000);
+                } else {
+                    btn.innerHTML = 'Erro ao enviar. Tente novamente.';
+                    btn.style.background = 'linear-gradient(135deg, #ff0000, #ff8800)';
+                    btn.style.opacity = '1';
+                    setTimeout(() => {
+                        btn.innerHTML = originalText;
+                        btn.style.background = '';
+                    }, 3000);
+                }
+            } catch (error) {
+                btn.innerHTML = 'Erro de conexão.';
+                setTimeout(() => {
+                    btn.innerHTML = originalText;
+                    btn.style.background = '';
+                }, 3000);
+            }
+        });
 
         // Smooth reveal on load
         window.addEventListener('load', () => {
             document.body.style.opacity = '1';
         });
     </script>
+	
+	<script>
+		// Audio Player Controller com Progresso
+		let currentAudio = null;
+		let currentBtn = null;
+		let currentCard = null;
+
+		// Função para formatar segundos em 0:00
+		function formatTime(time) {
+			if (isNaN(time)) return "0:00";
+			const minutes = Math.floor(time / 60);
+			const seconds = Math.floor(time % 60);
+			return `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
+		}
+
+		document.querySelectorAll('.play-btn').forEach(btn => {
+			btn.addEventListener('click', function(e) {
+				e.preventDefault();
+				const audioSrc = this.getAttribute('data-audio');
+				const card = this.closest('.music-card');
+				
+				// Elementos de UI específicos deste card
+				const ui = card.querySelector('.audio-player-ui');
+				const progressBar = card.querySelector('.progress-bar-fill');
+				const progressBg = card.querySelector('.progress-bar-bg');
+				const currentTimeEl = card.querySelector('.current-time');
+				const totalTimeEl = card.querySelector('.total-time');
+
+				if (!audioSrc) return;
+
+				// Se clicou no botão da música que já está carregada
+				if (currentAudio && currentAudio.src.includes(audioSrc)) {
+					if (currentAudio.paused) {
+						currentAudio.play();
+						this.innerHTML = '⏸';
+					} else {
+						currentAudio.pause();
+						this.innerHTML = '▶';
+					}
+					return;
+				}
+
+				// Se tinha outra música tocando, pausa ela e esconde a UI dela
+				if (currentAudio) {
+					currentAudio.pause();
+					if (currentBtn) currentBtn.innerHTML = '▶';
+					if (currentCard) {
+						const oldUi = currentCard.querySelector('.audio-player-ui');
+						if (oldUi) oldUi.style.display = 'none';
+					}
+				}
+
+				// Inicia o novo áudio
+				currentAudio = new Audio(audioSrc);
+				currentBtn = this;
+				currentCard = card;
+				
+				// Mostra a barra de progresso deste card
+				if (ui) ui.style.display = 'block';
+				this.innerHTML = '⏸';
+				currentAudio.play();
+
+				// Pega o tempo total assim que o áudio carregar
+				currentAudio.addEventListener('loadedmetadata', () => {
+					if(totalTimeEl) totalTimeEl.textContent = formatTime(currentAudio.duration);
+				});
+
+				// Atualiza a barra e os segundos enquanto toca
+				currentAudio.addEventListener('timeupdate', () => {
+					if(currentTimeEl) currentTimeEl.textContent = formatTime(currentAudio.currentTime);
+					if(progressBar && currentAudio.duration) {
+						const percent = (currentAudio.currentTime / currentAudio.duration) * 100;
+						progressBar.style.width = percent + '%';
+					}
+				});
+
+				// Permite clicar na barra para avançar a música
+				if(progressBg) {
+					progressBg.onclick = function(event) {
+						const width = this.clientWidth;
+						const clickX = event.offsetX;
+						const duration = currentAudio.duration;
+						currentAudio.currentTime = (clickX / width) * duration;
+					};
+				}
+
+				// Fim da música
+				currentAudio.onended = () => {
+					this.innerHTML = '▶';
+					if(progressBar) progressBar.style.width = '0%';
+					if(currentTimeEl) currentTimeEl.textContent = '0:00';
+				};
+			});
+		});
+	</script>
 </body>
 </html>
