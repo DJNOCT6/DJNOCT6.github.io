@@ -811,16 +811,25 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            color: #fff;
-            font-size: 1.5rem;
+            /* Removemos a cor do texto e zeramos a fonte para esconder qualquer resíduo */
+            font-size: 0; 
+            color: transparent;
             box-shadow: var(--glow-purple);
             transition: all 0.3s ease;
             cursor: pointer;
             border: none;
+            overflow: hidden; /* Garante que a imagem não vaze do círculo */
         }
 
         .play-btn:hover {
             transform: scale(1.1);
+        }
+		
+		.play-icon {
+            width: 24px;
+            height: 24px;
+            object-fit: contain;
+            pointer-events: none; /* Isso impede que clicar bem na imagem quebre o JavaScript */
         }
 
         .music-card-info {
@@ -1449,6 +1458,40 @@
         .fade-in-delay-2 { transition-delay: 0.2s; }
         .fade-in-delay-3 { transition-delay: 0.3s; }
         .fade-in-delay-4 { transition-delay: 0.4s; }
+		
+		/* ===== BACK TO TOP ===== */
+        .back-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: var(--gradient-neon);
+            color: white;
+            border: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: var(--glow-purple);
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(20px);
+            transition: all 0.3s ease;
+            z-index: 999;
+        }
+        
+        .back-to-top.show {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+        
+        .back-to-top:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 35px rgba(184, 41, 221, 0.6);
+        }
     </style>
 </head>
 <body>
@@ -1511,48 +1554,64 @@ window.onclick = function(event) {
 </script>
 
 <style>
-.language-dropdown {
-    position: relative;
-    display: inline-block;
-    font-family: sans-serif;
-    font-size: 14px;
-    cursor: pointer;
-    user-select: none;
-}
-.selected-lang {
-    background: #f1f1f1;
-    padding: 8px 12px;
-    border-radius: 4px;
-    border: 1px solid #ccc;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-}
-.options-list {
-    position: absolute;
-    top: 100%;
-    left: 0;
-    right: 0;
-    background: #fff;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    margin-top: 4px;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-    z-index: 99;
-}
-.option-item {
-    padding: 8px 12px;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-}
-.option-item:hover {
-    background: #f0f0f0;
-}
-.arrow {
-    font-size: 10px;
-    margin-left: auto;
-}
+		/* ===== LANGUAGE DROPDOWN ===== */
+        .language-dropdown {
+            position: relative;
+            display: inline-block;
+            font-family: 'Share Tech Mono', monospace;
+            font-size: 0.75rem;
+            cursor: pointer;
+            user-select: none;
+            color: var(--text-secondary);
+        }
+        
+        .selected-lang {
+            background: rgba(18, 18, 26, 0.8);
+            padding: 6px 14px;
+            border-radius: 6px;
+            border: 1px solid var(--dark-border);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s ease;
+        }
+        
+        .selected-lang:hover {
+            border-color: var(--neon-purple);
+        }
+        
+        .options-list {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+            background: var(--dark-card);
+            border: 1px solid var(--neon-purple);
+            border-radius: 6px;
+            margin-top: 4px;
+            box-shadow: var(--glow-purple);
+            z-index: 99;
+            overflow: hidden; /* Mantém as bordas arredondadas nos itens */
+        }
+        
+        .option-item {
+            padding: 8px 12px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--text-primary);
+            transition: all 0.3s ease;
+        }
+        
+        .option-item:hover {
+            background: rgba(184, 41, 221, 0.1);
+            color: var(--neon-purple);
+        }
+        
+        .arrow {
+            font-size: 10px;
+            margin-left: auto;
+        }
 </style>>
             </li>
         </ul>
@@ -1662,13 +1721,15 @@ window.onclick = function(event) {
                 <div class="music-card-cover">
                     <img src="images/THE_FUNK_HYBRID.jpg" alt="Capa The Funk Hybrid" class="music-card-image">
                     <div class="music-play-overlay">
-                        <button class="play-btn" data-audio="audio/AMOSTRA_BAILE_CONNECTION.mp3">▶</button>
+                        <button class="play-btn" data-audio="audio/AMOSTRA_BAILE_CONNECTION.mp3">
+                            <img src="images/play.png" alt="" class="play-icon">
+                        </button>
                     </div>
                 </div>
                 <div class="music-card-info">
                     <h3 class="music-card-title">BAILE CONNECTION</h3>
-                    <p class="music-card-meta">NOCT6 • 2026</p>
-                    <span class="music-card-genre">Funk Hybrid</span>
+                    <p class="music-card-meta">NOCT6 • THE FUNK HYBRID • 2026</p>
+                    <span class="music-card-genre">Funk \ Funk Hybrid</span>
                     
                     <div class="audio-player-ui" style="display: none;">
                         <div class="progress-area">
@@ -1687,12 +1748,14 @@ window.onclick = function(event) {
                 <div class="music-card-cover">
                     <img src="images/OVERLOAD.jpg" alt="Capa Overload" class="music-card-image">
                     <div class="music-play-overlay">
-                        <button class="play-btn" data-audio="audio/AMOSTRA_NIGHT_VISION.mp3">▶</button>
+                        <button class="play-btn" data-audio="audio/AMOSTRA_NIGHT_VISION.mp3">
+                            <img src="images/play.png" alt="" class="play-icon">
+                        </button>
                     </div>
                 </div>
                 <div class="music-card-info">
                     <h3 class="music-card-title">NIGHT VISION</h3>
-                    <p class="music-card-meta">NOCT6 • 2026</p>
+                    <p class="music-card-meta">NOCT6 • OVERLOAD • 2026</p>
                     <span class="music-card-genre">Eletronic \ Brazilian Bass</span>
                     
                     <div class="audio-player-ui" style="display: none;">
@@ -1712,13 +1775,15 @@ window.onclick = function(event) {
                 <div class="music-card-cover">
                     <img src="images/THE_FUNK_HYBRID.jpg" alt="Capa The Funk Hybrid" class="music-card-image">
                     <div class="music-play-overlay">
-                        <button class="play-btn" data-audio="audio/AMOSTRA_BRAZILIAN_INFLUENCE.mp3">▶</button>
+                        <button class="play-btn" data-audio="audio/AMOSTRA_BRAZILIAN_INFLUENCE.mp3">
+                            <img src="images/play.png" alt="" class="play-icon">
+                        </button>
                     </div>
                 </div>
                 <div class="music-card-info">
                     <h3 class="music-card-title">BRAZILIAN INFLUENCE</h3>
-                    <p class="music-card-meta">NOCT6 • 2026</p>
-                    <span class="music-card-genre">Funk Hybrid</span>
+                    <p class="music-card-meta">NOCT6 • THE FUNK HYBRID • 2026</p>
+                    <span class="music-card-genre">Funk \ Funk Hybrid</span>
                     
                     <div class="audio-player-ui" style="display: none;">
                         <div class="progress-area">
@@ -1737,12 +1802,14 @@ window.onclick = function(event) {
                 <div class="music-card-cover">
                     <img src="images/OVERLOAD.jpg" alt="Capa Overload" class="music-card-image">
                     <div class="music-play-overlay">
-                        <button class="play-btn" data-audio="audio/AMOSTRA_TIME_MACHINE.mp3">▶</button>
+                        <button class="play-btn" data-audio="audio/AMOSTRA_TIME_MACHINE.mp3">
+                            <img src="images/play.png" alt="" class="play-icon">
+                        </button>
                     </div>
                 </div>
                 <div class="music-card-info">
                     <h3 class="music-card-title">TIME MACHINE</h3>
-                    <p class="music-card-meta">NOCT6 • 2026</p>
+                    <p class="music-card-meta">NOCT6 • OVERLOAD • 2026</p>
                     <span class="music-card-genre">Eletronic \ Brazilian Bass</span>
                     
                     <div class="audio-player-ui" style="display: none;">
@@ -1762,12 +1829,14 @@ window.onclick = function(event) {
                 <div class="music-card-cover">
                     <img src="images/DEEP_GRAVITY.jpg" alt="Capa Deep Gravity" class="music-card-image">
                     <div class="music-play-overlay">
-                        <button class="play-btn" data-audio="audio/AMOSTRA_RUMBLE_THE_FLOOR.mp3">▶</button>
+                        <button class="play-btn" data-audio="audio/AMOSTRA_RUMBLE_THE_FLOOR.mp3">
+                            <img src="images/play.png" alt="" class="play-icon">
+                        </button>
                     </div>
                 </div>
                 <div class="music-card-info">
                     <h3 class="music-card-title">RUMBLE THE FLOOR</h3>
-                    <p class="music-card-meta">NOCT6 • 2026</p>
+                    <p class="music-card-meta">NOCT6 • RUMBLE THE FLOOR • 2026</p>
                     <span class="music-card-genre">Eletronic \ Brazilian Bass</span>
                     
                     <div class="audio-player-ui" style="display: none;">
@@ -1785,14 +1854,16 @@ window.onclick = function(event) {
             <!-- 6 MARGINAL 011 -->
             <div class="music-card fade-in fade-in-delay-3">
                 <div class="music-card-cover">
-                    <img src="images/DEPOIS_DA_CHUVA.png" alt="Capa Depois da Chuva" class="music-card-image">
+                    <img src="images/DEPOIS_DA_CHUVA.jpg" alt="Capa Depois da Chuva" class="music-card-image">
                     <div class="music-play-overlay">
-                        <button class="play-btn" data-audio="audio/AMOSTRA_MARGINAL_011.mp3">▶</button>
+                        <button class="play-btn" data-audio="audio/AMOSTRA_MARGINAL_011.mp3">
+                            <img src="images/play.png" alt="" class="play-icon">
+                        </button>
                     </div>
                 </div>
                 <div class="music-card-info">
                     <h3 class="music-card-title">MARGINAL 011</h3>
-                    <p class="music-card-meta">NOCT6 • 2026</p>
+                    <p class="music-card-meta">NOCT6 • DEPOIS DA CHUVA • 2026</p>
                     <span class="music-card-genre">Trap</span>
                     
                     <div class="audio-player-ui" style="display: none;">
@@ -1943,6 +2014,11 @@ window.onclick = function(event) {
         </div>
     </section>
 
+		<!-- Botão Voltar ao Topo -->
+		<button id="backToTop" class="back-to-top" onclick="scrollToTop()">
+			<svg viewBox="0 0 24 24" class="icon-svg-lg"><path d="M4 12l1.41 1.41L11 7.83V20h2V7.83l5.58 5.59L20 12l-8-8-8 8z"/></svg>
+		</button>
+
     <!-- Footer -->
     <footer class="footer">
         <div class="footer-content">
@@ -1977,12 +2053,13 @@ window.onclick = function(event) {
         </div>
 
         <div class="footer-bottom">
-            <p class="footer-copy">© 2026 NOCT6. All rights reserved. Frequency Architect.</p>
+            <p class="footer-copy">© <span id="currentYear"></span> NOCT6 Studio. Todos os direitos reservados. Frequency Architect.</p>
             <div class="footer-status">
                 <div class="status-dot"></div>
                 SYSTEM ONLINE
             </div>
         </div>
+		
     </footer>
 
     <!-- JavaScript -->
@@ -2070,7 +2147,7 @@ window.onclick = function(event) {
                     formMsg: "Mensagem", formMsgPH: "Descreva sua mensagem...",
                     btnSend: "Enviar Mensagem",
                     footerDesc: "Frequency Architect. Dualidade sônica em sua forma mais absoluta. System online...",
-                    footerCopy: "© 2026 NOCT6. All rights reserved. Frequency Architect.",
+                    footerCopy: "© " + new Date().getFullYear() + " NOCT6 Studio. Todos os direitos reservados. Frequency Architect.",
                     sysOnline: "SYSTEM ONLINE"
                 },
                 en: {
@@ -2091,7 +2168,7 @@ window.onclick = function(event) {
                     formMsg: "Message", formMsgPH: "Describe your message...",
                     btnSend: "Send Message",
                     footerDesc: "Frequency Architect. Sonic duality in its most absolute form. System online...",
-                    footerCopy: "© 2026 NOCT6. All rights reserved. Frequency Architect.",
+                    footerCopy: "© " + new Date().getFullYear() + " NOCT6 Studio. All rights reserved. Frequency Architect.",
                     sysOnline: "SYSTEM ONLINE"
                 },
                 es: {
@@ -2112,7 +2189,7 @@ window.onclick = function(event) {
                     formMsg: "Mensaje", formMsgPH: "Describe tu mensaje...",
                     btnSend: "Enviar Mensaje",
                     footerDesc: "Frequency Architect. Dualidad sónica en su forma más absoluta. Sistema en línea...",
-                    footerCopy: "© 2026 NOCT6. Todos los derechos reservados. Frequency Architect.",
+                    footerCopy: "© " + new Date().getFullYear() + " NOCT6 Studio. Todos los derechos reservados. Frequency Architect.",
                     sysOnline: "SISTEMA EN LÍNEA"
                 }
             };
@@ -2250,13 +2327,35 @@ window.onclick = function(event) {
         window.addEventListener('load', () => {
             document.body.style.opacity = '1';
         });
+		
+		// Funcionalidade do Botão Voltar ao Topo
+        const backToTopBtn = document.getElementById('backToTop');
+        
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 400) {
+                backToTopBtn.classList.add('show');
+            } else {
+                backToTopBtn.classList.remove('show');
+            }
+        });
+
+        function scrollToTop() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // Atualiza o ano no carregamento inicial
+        document.getElementById('currentYear').textContent = new Date().getFullYear();
     </script>
 	
 	<script>
-		// Audio Player Controller com Progresso
+		// Audio Player Controller com Progresso e Ícones PNG
 		let currentAudio = null;
 		let currentBtn = null;
 		let currentCard = null;
+
+		// Variáveis com o HTML das imagens
+		const playIcon = '<img src="images/play.png" alt="Play" class="play-icon">';
+		const pauseIcon = '<img src="images/pause.png" alt="Pause" class="play-icon">';
 
 		// Função para formatar segundos em 0:00
 		function formatTime(time) {
@@ -2272,7 +2371,6 @@ window.onclick = function(event) {
 				const audioSrc = this.getAttribute('data-audio');
 				const card = this.closest('.music-card');
 				
-				// Elementos de UI específicos deste card
 				const ui = card.querySelector('.audio-player-ui');
 				const progressBar = card.querySelector('.progress-bar-fill');
 				const progressBg = card.querySelector('.progress-bar-bg');
@@ -2285,10 +2383,10 @@ window.onclick = function(event) {
 				if (currentAudio && currentAudio.src.includes(audioSrc)) {
 					if (currentAudio.paused) {
 						currentAudio.play();
-						this.innerHTML = '⏸';
+						this.innerHTML = pauseIcon; // Muda para imagem Pause
 					} else {
 						currentAudio.pause();
-						this.innerHTML = '▶';
+						this.innerHTML = playIcon; // Muda para imagem Play
 					}
 					return;
 				}
@@ -2296,7 +2394,7 @@ window.onclick = function(event) {
 				// Se tinha outra música tocando, pausa ela e esconde a UI dela
 				if (currentAudio) {
 					currentAudio.pause();
-					if (currentBtn) currentBtn.innerHTML = '▶';
+					if (currentBtn) currentBtn.innerHTML = playIcon; // Reseta botão antigo para imagem Play
 					if (currentCard) {
 						const oldUi = currentCard.querySelector('.audio-player-ui');
 						if (oldUi) oldUi.style.display = 'none';
@@ -2308,17 +2406,14 @@ window.onclick = function(event) {
 				currentBtn = this;
 				currentCard = card;
 				
-				// Mostra a barra de progresso deste card
 				if (ui) ui.style.display = 'block';
-				this.innerHTML = '⏸';
+				this.innerHTML = pauseIcon; // Muda para imagem Pause
 				currentAudio.play();
 
-				// Pega o tempo total assim que o áudio carregar
 				currentAudio.addEventListener('loadedmetadata', () => {
 					if(totalTimeEl) totalTimeEl.textContent = formatTime(currentAudio.duration);
 				});
 
-				// Atualiza a barra e os segundos enquanto toca
 				currentAudio.addEventListener('timeupdate', () => {
 					if(currentTimeEl) currentTimeEl.textContent = formatTime(currentAudio.currentTime);
 					if(progressBar && currentAudio.duration) {
@@ -2327,7 +2422,6 @@ window.onclick = function(event) {
 					}
 				});
 
-				// Permite clicar na barra para avançar a música
 				if(progressBg) {
 					progressBg.onclick = function(event) {
 						const width = this.clientWidth;
@@ -2339,7 +2433,7 @@ window.onclick = function(event) {
 
 				// Fim da música
 				currentAudio.onended = () => {
-					this.innerHTML = '▶';
+					this.innerHTML = playIcon; // Volta para imagem Play quando acabar
 					if(progressBar) progressBar.style.width = '0%';
 					if(currentTimeEl) currentTimeEl.textContent = '0:00';
 				};
